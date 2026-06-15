@@ -1,128 +1,82 @@
-// script.js - Complete Error-Free Client Side Runtime Module
+// Global Mock Database for CELOSIA
+const PRODUCTS = [
+  { id: 101, name: "Ribbed Knit Top", price: 29.90, category: "Tops", img: "https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400" },
+  { id: 102, name: "Wide-Leg Jeans", price: 49.90, category: "Bottoms", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=400" },
+  { id: 103, name: "Linen Blend Shirt", price: 34.90, category: "Tops", img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400" },
+  { id: 104, name: "Oversized Sweater", price: 39.90, category: "Tops", img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=400" }
+];
 
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize Local Storage Systems if empty
+if (!localStorage.getItem("celosia_cart")) localStorage.setItem("celosia_cart", JSON.stringify([]));
+if (!localStorage.getItem("celosia_orders")) {
+  // Adding dummy initial orders so the profile looks like Amazon instantly!
+  const dummyOrders = [
+    { orderId: "CLS-9982", date: "June 10, 2026", total: 79.80, items: "Wide-Leg Jeans, Ribbed Knit Top", status: "Delivered" },
+    { orderId: "CLS-1024", date: "June 14, 2026", total: 34.90, items: "Linen Blend Shirt", status: "In Transit" }
+  ];
+  localStorage.setItem("celosia_orders", JSON.stringify(dummyOrders));
+}
+
+// 1. GLOBAL SEARCH FUNCTIONALITY
+function initializeSearch() {
+  const searchInput = document.getElementById("global-search");
+  if (!searchInput) return;
+
+  searchInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      const query = searchInput.value.toLowerCase().trim();
+      if (query !== "") {
+        // Redirect to product catalog page with search query parameter
+        window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+  });
+}
+
+// 2. LIVE CART COUNTER UPDATE
+function updateCartCount() {
+  const cartCountEl = document.getElementById("cart-count");
+  if (!cartCountEl) return;
+  const cart = JSON.parse(localStorage.getItem("celosia_cart")) || [];
+  cartCountEl.textContent = cart.length;
+}
+
+// 3. PROFILE DASHBOARD RENDERER (Amazon Style)
+function renderProfileDashboard() {
+  const orderListContainer = document.getElementById("amazon-order-list");
+  if (!orderListContainer) return;
+
+  const orders = JSON.parse(localStorage.getItem("celosia_orders")) || [];
   
-  // 1. STATE CONFIGURATIONS
-  let globalCartCounter = 0;
-  let globalWishlistCounter = 0;
-  const wishlistedItemsSet = new Set();
+  if (orders.length === 0) {
+    orderListContainer.innerHTML = `<p class="text-xs text-gray-400">You haven't placed any orders yet.</p>`;
+    return;
+  }
 
-  // 2. DOM INTERFACE SELECTORS
-  const cartCounterUI = document.getElementById('cart-count');
-  const wishlistCounterUI = document.getElementById('wishlist-count');
-  const chatBubbleTrigger = document.getElementById('chat-trigger-btn');
-  const chatWindowPanel = document.getElementById('chat-window');
-  const closeChatPanelBtn = document.getElementById('close-chat');
-  const chatInputField = document.getElementById('chat-input-field');
-  const sendChatMsgBtn = document.getElementById('send-chat-msg');
-  const chatMessagesContainer = document.getElementById('chat-box-messages');
-  const automaticQuickChips = document.querySelectorAll('.chat-chip');
-
-  // 3. CART PROGRAMMING SUBSYSTEM
-  document.body.addEventListener('click', (event) => {
-    if (event.target.classList.contains('add-to-cart-btn')) {
-      globalCartCounter++;
-      cartCounterUI.innerText = globalCartCounter;
-      
-      // Luxury subtle dynamic modal update simulation
-      const cardContext = event.target.closest('[data-product-id]');
-      const productName = cardContext ? cardContext.querySelector('h3').innerText : 'Item';
-      
-      // Standard notification validation approach
-      alert(`${productName} added securely to checkout cart!`);
-    }
-  });
-
-  // 4. WISHLIST PROGRAMMING SUBSYSTEM 
-  document.body.addEventListener('click', (event) => {
-    if (event.target.classList.contains('wishlist-btn')) {
-      const targetBtn = event.target;
-      const cardContext = targetBtn.closest('[data-product-id]');
-      const productId = cardContext ? cardContext.getAttribute('data-product-id') : Math.random().toString();
-
-      if (wishlistedItemsSet.has(productId)) {
-        wishlistedItemsSet.delete(productId);
-        globalWishlistCounter--;
-        targetBtn.innerText = '🤍';
-        targetBtn.style.color = 'black';
-      } else {
-        wishlistedItemsSet.add(productId);
-        globalWishlistCounter++;
-        targetBtn.innerText = '❤️';
-      }
-
-      // Toggle state representation for metric counter badge
-      if (globalWishlistCounter > 0) {
-        wishlistCounterUI.classList.remove('hidden');
-        wishlistCounterUI.innerText = globalWishlistCounter;
-      } else {
-        wishlistCounterUI.classList.add('hidden');
-      }
-    }
-  });
-
-  // 5. SHOPPING BOT CHAT UTILITY SYSTEM (INTERACTION CONTROLLER)
-  const toggleChatSystem = () => {
-    if (chatWindowPanel.classList.contains('hidden')) {
-      chatWindowPanel.classList.remove('hidden');
-      setTimeout(() => {
-        chatWindowPanel.classList.remove('translate-y-10', 'opacity-0');
-      }, 10);
-    } else {
-      chatWindowPanel.classList.add('translate-y-10', 'opacity-0');
-      setTimeout(() => {
-        chatWindowPanel.classList.add('hidden');
-      }, 300);
-    }
-  };
-
-  chatBubbleTrigger.addEventListener('click', toggleChatSystem);
-  closeChatPanelBtn.addEventListener('click', toggleChatSystem);
-
-  // Dynamic Content Response Core Engine
-  const executeMessageDelivery = (customText) => {
-    const rawMessage = customText || chatInputField.value.trim();
-    if (!rawMessage) return;
-
-    // Append outgoing user node
-    const userMsgNode = document.createElement('div');
-    userMsgNode.className = 'flex items-start justify-end space-x-2 w-full';
-    userMsgNode.innerHTML = `
-      <div class="bg-black text-white p-3 rounded-xl shadow-sm text-xs max-w-[80%] leading-relaxed">
-        <p>${rawMessage}</p>
+  let html = "";
+  orders.forEach(order => {
+    html += `
+      <div class="border border-gray-200 rounded-xl p-4 space-y-3 bg-gray-50/50">
+        <div class="flex justify-between items-center text-[11px] font-bold uppercase tracking-wider text-gray-500 border-b border-gray-100 pb-2">
+          <div>Order ID: <span class="text-black">${order.orderId}</span></div>
+          <div>Date: <span class="text-black">${order.date}</span></div>
+        </div>
+        <div class="flex justify-between items-start pt-1">
+          <div>
+            <h4 class="text-xs font-bold text-gray-800">${order.items}</h4>
+            <p class="text-[11px] text-gray-400 mt-0.5">Status: <span class="text-green-600 font-bold">${order.status}</span></p>
+          </div>
+          <div class="text-xs font-bold text-gray-900">$${order.total.toFixed(2)}</div>
+        </div>
       </div>
     `;
-    chatMessagesContainer.appendChild(userMsgNode);
-    if(!customText) chatInputField.value = ''; // clean input
-    
-    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-
-    // Simulate luxury AI response loop delay
-    setTimeout(() => {
-      const assistantResponseNode = document.createElement('div');
-      assistantResponseNode.className = 'flex items-start space-x-2 max-w-[85%]';
-      assistantResponseNode.innerHTML = `
-        <div class="w-6 h-6 rounded-full bg-black text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0">C</div>
-        <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
-          <p class="text-xs text-gray-800 leading-relaxed">Let me look up that information for you. Our global inventory is processing your selection... ✨</p>
-        </div>
-      `;
-      chatMessagesContainer.appendChild(assistantResponseNode);
-      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }, 800);
-  };
-
-  sendChatMsgBtn.addEventListener('click', () => executeMessageDelivery(null));
-  chatInputField.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') executeMessageDelivery(null);
   });
+  orderListContainer.innerHTML = html;
+}
 
-  // Action chips listener routing
-  automaticQuickChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      executeMessageDelivery(chip.innerText);
-    });
-  });
-
+// Initialize everything on DOM Load
+document.addEventListener("DOMContentLoaded", () => {
+  initializeSearch();
+  updateCartCount();
+  renderProfileDashboard();
 });
-      
