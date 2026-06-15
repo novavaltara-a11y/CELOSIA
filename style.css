@@ -1,0 +1,31 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* Typography Global Enforcements */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Aspect Ratio constraints fallback for raw mobile view processing */
+.aspect-\[3\/4\] {
+  aspect-ratio: 3 / 4;
+}
+
+/* Scrollbar aesthetic customization for chat panel area */
+#chat-box-messages::-webkit-scrollbar {
+  width: 4px;
+}
+#chat-box-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+#chat-box-messages::-webkit-scrollbar-thumb {
+  background: #E4E4E2;
+  border-radius: 10px;
+  }
