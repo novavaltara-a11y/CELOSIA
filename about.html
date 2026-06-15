@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | C-STYLE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased">
+
+  <nav class="border-b border-gray-200 bg-white sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold tracking-widest font-serif">C-STYLE</a>
+      <div class="flex space-x-6 text-xs uppercase font-semibold tracking-wider text-gray-600">
+        <a href="index.html" class="hover:text-black transition">Home</a>
+        <a href="products.html" class="hover:text-black transition">Shop</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-4 py-16 space-y-12">
+    <section class="text-center space-y-4">
+      <h1 class="text-3xl md:text-5xl font-serif font-light tracking-wide uppercase">Our Philosophy</h1>
+      <div class="h-0.5 w-12 bg-black mx-auto mt-2"></div>
+      <p class="text-xs text-gray-500 tracking-widest uppercase mt-4">Defining Modern Aesthetics</p>
+      <p class="text-sm text-gray-600 leading-relaxed max-w-xl mx-auto pt-4">
+        C-Style was founded with a singular vision: to create contemporary fashion pieces that blend timeless elegance with modern confidence. We believe that what you wear should be a reflection of your inner strength and individuality.
+      </p>
+    </section>
+
+    <section class="grid md:grid-cols-2 gap-8 items-center pt-6">
+      <div class="bg-gray-100 rounded-lg overflow-hidden aspect-[4/5]">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=400" alt="Design Studio" class="w-full h-full object-cover">
+      </div>
+      <div class="space-y-4 text-xs font-medium text-gray-600">
+        <h3 class="text-sm font-bold uppercase tracking-widest text-black font-serif">Sustainably Sourced</h3>
+        <p class="leading-relaxed">Every piece in our collection is crafted using responsibly managed materials and manufactured under strict ethical standards to ensure minimal environmental impact.</p>
+        
+        <h3 class="text-sm font-bold uppercase tracking-widest text-black font-serif mt-6">Premium Craftsmanship</h3>
+        <p class="leading-relaxed">We pay meticulous attention to details, from fabric selection to garment construction, ensuring durability and a flawless fit for high-end international standards.</p>
+      </div>
+    </section>
+
+    <section class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm space-y-6">
+      <div class="text-center">
+        <h2 class="text-lg font-bold uppercase tracking-widest font-serif">Customer Care Desk</h2>
+        <p class="text-xs text-gray-400 mt-1">Have questions about your order or sizing? Reach out to us.</p>
+      </div>
+      <form class="space-y-4 text-xs font-semibold" onsubmit="event.preventDefault(); alert('Message sent securely to customer support desk!');">
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-gray-500 mb-1">Full Name</label><input type="text" required class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black"></div>
+          <div><label class="block text-gray-500 mb-1">Email Address</label><input type="email" required class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black"></div>
+        </div>
+        <div><label class="block text-gray-500 mb-1">Message</label><textarea rows="4" required class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black font-medium resize-none" placeholder="How can we assist you today?"></textarea></div>
+        <button type="submit" class="w-full bg-black text-white text-center text-[10px] uppercase tracking-widest font-bold py-3.5 rounded-lg shadow hover:bg-gray-800 transition">Submit Inquiry</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+  </html>
+    
