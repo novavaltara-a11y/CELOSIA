@@ -9,45 +9,56 @@
 </head>
 <body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen">
 
-  <header class="py-6 text-center bg-white border-b border-gray-100">
-    <a href="index.html" class="text-xl font-bold tracking-widest font-serif">CELOSIA</a>
-  </header>
+  <nav class="border-b border-gray-200 bg-white px-4 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-lg font-bold tracking-widest font-serif">CELOSIA</a>
+    <div class="flex space-x-4 text-xs font-bold uppercase text-gray-500">
+      <a href="index.html" class="hover:text-black">Home</a>
+      <a href="admin.html" class="text-gray-400 hover:text-black">⚙️ ADMIN</a>
+    </div>
+  </nav>
 
   <main class="flex-grow flex items-center justify-center px-4 py-12">
     <div class="bg-white max-w-md w-full p-8 rounded-2xl border border-gray-100 shadow-xl space-y-6">
       
       <div class="text-center space-y-1">
-        <h2 class="text-xl font-bold font-serif uppercase tracking-wide">Welcome Back</h2>
-        <p class="text-xs text-gray-400 font-medium">Access your premium fashion dashboard and tracking files.</p>
+        <h2 class="text-xl font-bold font-serif uppercase tracking-wide">Welcome to CELOSIA</h2>
+        <p class="text-xs text-gray-400 font-medium">Sign in to track your Amazon style luxury dashboard.</p>
       </div>
 
       <form class="space-y-4 text-xs font-semibold" onsubmit="event.preventDefault(); window.location.href='index.html';">
         <div>
-          <label class="block text-gray-500 mb-1">Email Terminal Address</label>
+          <label class="block text-gray-500 mb-1">Email Address</label>
           <input type="email" placeholder="name@domain.com" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
         </div>
         <div>
-          <label class="block text-gray-500 mb-1">Security Token Password</label>
+          <label class="block text-gray-500 mb-1">Password</label>
           <input type="password" placeholder="••••••••" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
         </div>
 
-        <div class="flex items-center justify-between text-[11px] font-bold text-gray-500 pt-1">
-          <label class="flex items-center space-x-2"><input type="checkbox" class="rounded"> <span>Remember device</span></label>
-          <a href="#" class="hover:text-black underline">Forgot key?</a>
-        </div>
-
         <button type="submit" class="w-full bg-black text-white text-center py-3.5 rounded-lg text-[11px] uppercase tracking-widest font-bold shadow-md hover:bg-gray-800 transition">
-          Authorize Session
+          Sign In
         </button>
       </form>
 
+      <div class="flex items-center my-4 select-none">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="mx-3 text-[10px] text-gray-400 font-bold uppercase tracking-wider">or</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+
+      <button onclick="alert('Google Authentication Portal Activated!');" class="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-50 transition flex items-center justify-center space-x-2">
+        <img src="https://www.gstatic.com/images/branding/product/1x/gsa_android_loupe_72dp.png" alt="Google Logo" class="w-4 h-4 object-contain">
+        <span>Continue with Google</span>
+      </button>
+
       <div class="border-t pt-4 text-center text-xs font-medium text-gray-400">
-        Don't have an asset profile? <a href="#" onclick="alert('Registration form portal activated!');" class="text-black font-bold underline">Create profile</a>
+        Don't have an account? <a href="#" onclick="alert('Registration form coming soon!');" class="text-black font-bold underline">Create profile</a>
       </div>
 
     </div>
   </main>
 
+  <script src="script.js"></script>
 </body>
-        </html>
-  
+  </html>
+                                 
