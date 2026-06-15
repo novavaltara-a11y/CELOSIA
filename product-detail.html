@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Framework | CELOSIA</title>
+  <title>Product View | CELOSIA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased">
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased pb-20 md:pb-0">
 
   <nav class="border-b border-gray-200 bg-white sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
       <a href="index.html" class="text-xl font-bold tracking-widest font-serif">CELOSIA</a>
-      <div class="flex space-x-6 text-xs uppercase font-semibold tracking-wider text-gray-600">
-        <a href="index.html" class="hover:text-black transition">Home</a>
-        <a href="products.html" class="hover:text-black transition">Shop All</a>
-      </div>
+      <a href="index.html" class="text-xs font-bold uppercase text-gray-500">← Back</a>
     </div>
   </nav>
 
@@ -26,61 +23,28 @@
 
     <div class="space-y-6 pt-4">
       <div>
-        <span class="text-[10px] bg-black text-white px-2 py-0.5 rounded uppercase tracking-widest font-bold">Premium Tier</span>
-        <h1 class="text-3xl font-serif tracking-wide uppercase mt-2">Ribbed Knit Top</h1>
-        <p class="text-xl font-bold mt-2">$29.90</p>
+        <h1 class="text-2xl font-serif uppercase tracking-wide">Ribbed Knit Top</h1>
+        <p class="text-xl font-bold mt-2 text-gray-900">$29.90</p>
       </div>
       
-      <p class="text-sm text-gray-500 leading-relaxed font-medium">
-        Designed with soft, stretch-enhanced fibers that breathe easily throughout global transits. Complete with elegant textures fit for clean layering profiles.
+      <p class="text-xs text-gray-400 font-medium leading-relaxed">
+        Premium tailored fabric structures. Styled specifically for dynamic fits and comfort adjustments.
       </p>
 
       <div class="pt-4">
-        <button onclick="alert('Item added safely to your shopping bag!');" class="w-full bg-black text-white py-4 rounded-xl text-xs uppercase tracking-widest font-bold hover:bg-gray-800 transition">
-          Add to Bag
-        </button>
+        <a href="checkout.html" class="w-full bg-black text-white text-center py-4 rounded-xl text-xs uppercase tracking-widest font-bold hover:bg-gray-800 transition block shadow-md">
+          Proceed to Order Checkout
+        </a>
       </div>
     </div>
   </main>
 
-  <section class="max-w-7xl mx-auto px-4 md:px-8 py-16 border-t border-gray-200">
-    <h3 class="text-sm font-bold uppercase tracking-widest font-serif mb-8 text-left">Similar Products</h3>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-      
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=400" class="w-full h-full object-cover transition group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Wide-Leg Jeans</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$49.90</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400" class="w-full h-full object-cover transition group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Linen Blend Shirt</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$34.90</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=400" class="w-full h-full object-cover transition group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Oversized Sweater</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$39.90</span>
-      </div>
-
-    </div>
-  </section>
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 h-16 px-6 flex items-center justify-between z-50 shadow-lg">
+    <a href="index.html" class="flex flex-col items-center justify-center text-xl text-gray-400">🏠<span class="text-[9px] font-bold mt-0.5">Home</span></a>
+    <a href="products.html" class="flex flex-col items-center justify-center text-xl text-gray-400">🔍<span class="text-[9px] font-bold mt-0.5">Search</span></a>
+    <a href="checkout.html" class="flex flex-col items-center justify-center text-xl text-black">🛍️<span class="text-[9px] font-bold mt-0.5">Checkout</span></a>
+    <a href="login.html" class="flex flex-col items-center justify-center text-xl text-gray-400">👤<span class="text-[9px] font-bold mt-0.5">Profile</span></a>
+  </div>
 
 </body>
-  </html>
-          
+</html>
