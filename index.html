@@ -47,7 +47,9 @@
             class="bg-[#F3F3F2] text-xs px-5 py-2.5 rounded-full w-60 focus:outline-none border border-transparent focus:border-gray-300 transition-all font-medium"
           />
         </div>
-        <button class="text-xl hover:opacity-70 transition-opacity">👤</button>
+        
+        <a href="login.html" class="text-xl hover:opacity-70 transition-opacity block">👤</a>
+        
         <button id="wishlist-trigger" class="text-xl hover:opacity-70 transition-opacity relative">
           🤍 <span id="wishlist-count" class="hidden absolute -top-1 -right-1 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
         </button>
@@ -182,14 +184,18 @@
       
       <div class="group relative flex flex-col" data-product-id="101">
         <div class="bg-[#F3F3F2] rounded-lg overflow-hidden relative aspect-[3/4] shadow-sm">
-          <img src="https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400" alt="Ribbed Knit Top" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <a href="product-detail.html" class="block w-full h-full">
+            <img src="https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400" alt="Ribbed Knit Top" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          </a>
           <button class="wishlist-btn absolute top-3 right-3 bg-white w-8 h-8 rounded-full shadow flex items-center justify-center text-xs transition-transform duration-200 active:scale-75 select-none hover:bg-gray-50">🤍</button>
           <div class="absolute bottom-0 left-0 w-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
             <button class="add-to-cart-btn bg-black text-white text-xs w-full py-2.5 rounded-md font-semibold tracking-wider uppercase shadow-md hover:bg-gray-900 transition">Add To Cart</button>
           </div>
         </div>
         <div class="mt-4 flex flex-col flex-grow">
-          <h3 class="text-xs md:text-sm font-semibold tracking-wide text-gray-800">Ribbed Knit Top</h3>
+          <a href="product-detail.html" class="hover:underline">
+            <h3 class="text-xs md:text-sm font-semibold tracking-wide text-gray-800">Ribbed Knit Top</h3>
+          </a>
           <p class="text-xs md:text-sm font-bold text-gray-900 mt-1">$29.90</p>
           <div class="flex space-x-1.5 mt-2">
             <span class="w-3 h-3 rounded-full bg-[#E5D7CD] border border-black/20 cursor-pointer"></span>
@@ -275,5 +281,4 @@
         <span class="text-[10px] tracking-widest font-bold text-gray-500 uppercase">Visit Us In Store</span>
         <h3 class="text-2xl font-serif mt-2 font-semibold">FIND A STORE</h3>
         <p class="text-xs text-gray-600 mt-2 max-w-[180px]">Locate your nearest premium physical showroom.</p>
-      </div>
-      <a href="about.html" class="border border-black text-black text-[10px] uppercase font-bold tracking-widest px-4 py-2 rounded-full self-start hover:bg-black hover:text-white transition durati
+      </d
