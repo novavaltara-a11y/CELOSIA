@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Gateway | CELOSIA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen">
+
+  <header class="py-6 text-center bg-white border-b border-gray-100">
+    <a href="index.html" class="text-xl font-bold tracking-widest font-serif">CELOSIA</a>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-12">
+    <div class="bg-white max-w-md w-full p-8 rounded-2xl border border-gray-100 shadow-xl space-y-6">
+      
+      <div class="text-center space-y-1">
+        <h2 class="text-xl font-bold font-serif uppercase tracking-wide">Welcome Back</h2>
+        <p class="text-xs text-gray-400 font-medium">Access your premium fashion dashboard and tracking files.</p>
+      </div>
+
+      <form class="space-y-4 text-xs font-semibold" onsubmit="event.preventDefault(); window.location.href='index.html';">
+        <div>
+          <label class="block text-gray-500 mb-1">Email Terminal Address</label>
+          <input type="email" placeholder="name@domain.com" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
+        </div>
+        <div>
+          <label class="block text-gray-500 mb-1">Security Token Password</label>
+          <input type="password" placeholder="••••••••" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] font-bold text-gray-500 pt-1">
+          <label class="flex items-center space-x-2"><input type="checkbox" class="rounded"> <span>Remember device</span></label>
+          <a href="#" class="hover:text-black underline">Forgot key?</a>
+        </div>
+
+        <button type="submit" class="w-full bg-black text-white text-center py-3.5 rounded-lg text-[11px] uppercase tracking-widest font-bold shadow-md hover:bg-gray-800 transition">
+          Authorize Session
+        </button>
+      </form>
+
+      <div class="border-t pt-4 text-center text-xs font-medium text-gray-400">
+        Don't have an asset profile? <a href="#" onclick="alert('Registration form portal activated!');" class="text-black font-bold underline">Create profile</a>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+        </html>
+  
