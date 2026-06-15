@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Management Dashboard | C-STYLE</title>
+  <title>Admin Dashboard | CELOSIA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,128 +12,99 @@
   <div class="min-h-screen flex flex-col md:flex-row">
     
     <aside class="w-full md:w-64 bg-black text-white p-6 flex flex-col justify-between">
-      <div>
-        <div class="text-xl font-bold tracking-widest font-serif mb-8 border-b border-gray-800 pb-4">
-          C-STYLE <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded font-sans ml-1 tracking-normal font-normal">CMS v1.0</span>
+      <div class="space-y-6">
+        <div class="text-xl font-bold tracking-widest font-serif">
+          CELOSIA <span class="text-[10px] block font-sans tracking-normal text-gray-400 font-medium">Management Suite</span>
         </div>
-        <nav class="space-y-3 text-xs uppercase tracking-widest font-semibold text-gray-400">
-          <a href="#" class="block bg-gray-900 text-white p-3 rounded-lg transition">📊 Dashboard</a>
-          <a href="#products" class="block hover:bg-gray-900 hover:text-white p-3 rounded-lg transition">🛍️ Products</a>
-          <a href="#orders" class="block hover:bg-gray-900 hover:text-white p-3 rounded-lg transition">📦 Orders Status</a>
-          <a href="#customers" class="block hover:bg-gray-900 hover:text-white p-3 rounded-lg transition">👤 Customers</a>
-          <a href="index.html" class="block hover:bg-gray-900 hover:text-white p-3 rounded-lg transition text-gray-500">🌐 View Live Store</a>
+        <nav class="space-y-3 text-xs uppercase font-semibold tracking-wider text-gray-400">
+          <a href="index.html" class="block hover:text-white transition py-2">← View Live Store</a>
+          <a href="#" class="block text-white py-2 border-l-2 border-white pl-2">📊 Analytics Overview</a>
+          <a href="#" onclick="alert('Inventory management module loading...');" class="block hover:text-white transition py-2">📦 Manage Products</a>
+          <a href="#" onclick="alert('Order database synchronization in progress...');" class="block hover:text-white transition py-2">🧾 Live Orders Logs</a>
         </nav>
       </div>
-      <div class="text-[10px] text-gray-600 font-medium pt-4 border-t border-gray-900">
-        Logged in as Store Admin
+      <div class="text-[10px] text-gray-500 pt-6 border-t border-gray-800">
+        Logged in as: Super Admin
       </div>
     </aside>
 
     <main class="flex-grow p-6 md:p-10 space-y-8">
       
-      <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b pb-4 border-gray-200">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b pb-5">
         <div>
-          <h1 class="text-2xl md:text-3xl font-serif font-bold tracking-wide">Management Center</h1>
-          <p class="text-xs text-gray-500 font-medium mt-0.5">Monitor and configure your premium store catalog assets.</p>
+          <h1 class="text-2xl font-serif font-bold tracking-wide">Control Core Panel</h1>
+          <p class="text-xs text-gray-400 font-medium mt-0.5">Real-time business intelligence logs for CELOSIA.</p>
         </div>
-        <div class="text-xs font-bold uppercase tracking-wider bg-white px-4 py-2.5 rounded-lg shadow-sm border border-gray-200 self-start">
-          📅 June 2026 Terminals
-        </div>
-      </header>
+        <button onclick="alert('Database backup initiated successfully!');" class="bg-black text-white text-[10px] uppercase tracking-widest font-bold px-5 py-3 rounded-lg shadow-md hover:bg-gray-800 transition">
+          Backup Store Logs
+        </button>
+      </div>
 
-      <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <span class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">Total Revenue (Month)</span>
-          <h3 class="text-2xl font-serif font-bold mt-1">$12,450.90</h3>
-          <p class="text-[10px] text-green-600 font-bold mt-2">↑ +14.2% vs last month</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Total Sales (MTD)</p>
+          <h3 class="text-xl font-bold mt-1">$14,290.50</h3>
+          <span class="text-[10px] text-green-600 font-bold">▲ +12% vs Last Week</span>
         </div>
-        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <span class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">Active Orders</span>
-          <h3 class="text-2xl font-serif font-bold mt-1">42 Orders</h3>
-          <p class="text-[10px] text-blue-600 font-bold mt-2">5 awaiting shipping processing</p>
+        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Active Orders</p>
+          <h3 class="text-xl font-bold mt-1">38 Pending</h3>
+          <span class="text-[10px] text-blue-600 font-bold">ℹ️ Processing via Node</span>
         </div>
-        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <span class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">Conversion Rate</span>
-          <h3 class="text-2xl font-serif font-bold mt-1">3.18%</h3>
-          <p class="text-[10px] text-green-600 font-bold mt-2">Optimal store performance</p>
+        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Catalog Items</p>
+          <h3 class="text-xl font-bold mt-1">4 Active Assets</h3>
+          <span class="text-[10px] text-gray-400 font-medium">Ready to scale inventory</span>
         </div>
-      </section>
+        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Conversion Rate</p>
+          <h3 class="text-xl font-bold mt-1">3.42%</h3>
+          <span class="text-[10px] text-green-600 font-bold">▲ Optimal Health</span>
+        </div>
+      </div>
 
-      <section class="grid grid-cols-1 xl:grid-cols-5 gap-8">
-        
-        <div class="xl:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
-          <h3 class="text-xs font-bold uppercase tracking-widest border-b pb-3 text-gray-700">✨ Catalog Control: Add Product</h3>
-          <form class="space-y-3 text-xs font-semibold" onsubmit="event.preventDefault(); alert('Product registered to storefront cache successfully!');">
-            <div>
-              <label class="block text-gray-500 mb-1">Product Title</label>
-              <input type="text" placeholder="e.g., Silk Midi Dress" required class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black font-medium">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-gray-500 mb-1">Price ($ USD)</label>
-                <input type="number" step="0.01" placeholder="49.90" required class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black font-medium">
-              </div>
-              <div>
-                <label class="block text-gray-500 mb-1">Category Select</label>
-                <select class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black font-medium">
-                  <option>Tops</option>
-                  <option>Bottoms</option>
-                  <option>Dresses</option>
-                  <option>Shoes</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="block text-gray-500 mb-1">Image Asset Unsplash URL</label>
-              <input type="url" placeholder="https://images.unsplash.com/..." class="w-full bg-gray-50 border rounded p-2.5 focus:outline-none focus:border-black font-medium">
-            </div>
-            <button type="submit" class="w-full bg-black text-white py-3 rounded-lg text-[10px] uppercase tracking-widest font-bold shadow hover:bg-gray-800 transition pt-3.5">
-              Publish Product Asset
-            </button>
-          </form>
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
+        <h3 class="text-sm font-bold uppercase tracking-widest font-serif border-b pb-3">Active Catalog Status</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-medium text-gray-500">
+            <thead>
+              <tr class="uppercase text-[10px] tracking-wider text-gray-400 border-b">
+                <th class="pb-3">Product Name</th>
+                <th class="pb-3">SKU ID</th>
+                <th class="pb-3">Stock Level</th>
+                <th class="pb-3">Retail Price</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 font-semibold text-gray-800">
+              <tr>
+                <td class="py-3">Ribbed Knit Top</td>
+                <td>CLS-101</td>
+                <td class="text-green-600">In Stock (42)</td>
+                <td>$29.90</td>
+              </tr>
+              <tr>
+                <td class="py-3">Wide-Leg Jeans</td>
+                <td>CLS-102</td>
+                <td class="text-green-600">In Stock (18)</td>
+                <td>$49.90</td>
+              </tr>
+              <tr>
+                <td class="py-3">Linen Blend Shirt</td>
+                <td>CLS-103</td>
+                <td class="text-orange-500">Low Stock (4)</td>
+                <td>$34.90</td>
+              </tr>
+            </tr>
+            <tbody class="divide-y divide-gray-100 font-semibold text-gray-800">
+            </tbody>
+          </table>
         </div>
-
-        <div class="xl:col-span-3 bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4 overflow-hidden">
-          <h3 class="text-xs font-bold uppercase tracking-widest border-b pb-3 text-gray-700">📦 Active Incoming Orders</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs font-medium text-gray-600">
-              <thead>
-                <tr class="border-b border-gray-100 text-[10px] uppercase text-gray-400 tracking-wider">
-                  <th class="pb-2">Order ID</th>
-                  <th class="pb-2">Customer</th>
-                  <th class="pb-2">Status</th>
-                  <th class="pb-2 text-right">Amount</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-50">
-                <tr>
-                  <td class="py-3 font-mono font-bold">#CS-9082</td>
-                  <td class="py-3">Sarah Jenkins (US)</td>
-                  <td class="py-3"><span class="bg-green-100 text-green-700 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded">Shipped</span></td>
-                  <td class="py-3 text-right font-bold text-black">$64.00</td>
-                </tr>
-                <tr>
-                  <td class="py-3 font-mono font-bold">#CS-9083</td>
-                  <td class="py-3">Liam Henderson (UK)</td>
-                  <td class="py-3"><span class="bg-yellow-100 text-yellow-700 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded">Pending</span></td>
-                  <td class="py-3 text-right font-bold text-black">$29.90</td>
-                </tr>
-                <tr>
-                  <td class="py-3 font-mono font-bold">#CS-9084</td>
-                  <td class="py-3">Amara Diallo (FR)</td>
-                  <td class="py-3"><span class="bg-green-100 text-green-700 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded">Shipped</span></td>
-                  <td class="py-3 text-right font-bold text-black">$114.80</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </section>
+      </div>
 
     </main>
   </div>
 
+  <script src="script.js"></script>
 </body>
   </html>
-          
+  
