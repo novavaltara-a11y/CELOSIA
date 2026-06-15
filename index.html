@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CELOSIA | Premium Global Fashion Store</title>
+  <title>CELOSIA | Premium Global Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased">
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased pb-20 md:pb-0">
 
-  <div class="bg-black text-white text-[10px] md:text-xs py-2.5 text-center tracking-widest uppercase font-medium select-none">
+  <div class="bg-black text-white text-[10px] py-2.5 text-center tracking-widest uppercase font-medium select-none">
     FREE SHIPPING ON ORDERS OVER $75 | EASY RETURNS
   </div>
 
@@ -19,83 +19,46 @@
       <a href="index.html" class="text-xl md:text-2xl font-bold tracking-widest font-serif">CELOSIA</a>
 
       <div class="hidden md:flex space-x-8 text-xs uppercase font-semibold tracking-wider text-gray-600">
-        <a href="products.html" class="hover:text-black transition-colors duration-200 py-2">NEW IN</a>
-        <a href="products.html" class="hover:text-black transition-colors duration-200 py-2">WOMEN</a>
-        <a href="products.html" class="hover:text-black transition-colors duration-200 py-2">MEN</a>
-        <a href="about.html" class="hover:text-black transition-colors duration-200 py-2">OUR STORY</a>
-        <a href="admin.html" class="text-gray-400 hover:text-black transition-colors duration-200 py-2 font-bold tracking-widest">⚙️ ADMIN</a>
+        <a href="products.html" class="hover:text-black transition">SHOP ALL</a>
+        <a href="about.html" class="hover:text-black transition">OUR STORY</a>
+        <a href="admin.html" class="text-gray-400 hover:text-black font-bold tracking-widest">⚙️ ADMIN</a>
       </div>
 
-      <div class="flex items-center space-x-4 md:space-x-6">
+      <div class="flex items-center space-x-4">
         <div class="relative hidden sm:block">
-          <input 
-            id="global-search"
-            type="text" 
-            placeholder="Search fashion..." 
-            class="bg-[#F3F3F2] text-xs px-5 py-2.5 rounded-full w-48 lg:w-60 focus:outline-none border border-transparent focus:border-gray-300 font-medium"
-          />
+          <input id="global-search" type="text" placeholder="Search fashion..." class="bg-[#F3F3F2] text-xs px-5 py-2.5 rounded-full w-48 lg:w-60 focus:outline-none border focus:border-gray-300 font-medium"/>
         </div>
-        <a href="login.html" class="text-xl hover:opacity-70 block">👤</a>
-        <a href="cart.html" class="text-xl hover:opacity-70 relative block">🛍️ <span id="cart-count" class="absolute -top-1 -right-1 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span></a>
+        
+        <button onclick="alert('Wishlist section synced with user storage.');" class="text-xl hover:opacity-70 relative">
+          🤍 <span id="like-count" class="absolute -top-1 -right-1 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+        </button>
+
+        <a href="cart.html" class="text-xl hover:opacity-70 relative">
+          🛍️ <span id="cart-count" class="absolute -top-1 -right-1 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
+        
+        <a href="login.html" class="text-xl hover:opacity-70 hidden md:block">👤</a>
       </div>
     </div>
   </nav>
 
-  <header class="relative bg-[#EAE8E4] min-h-[50vh] md:min-h-[75vh] flex items-center overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 w-full grid md:grid-cols-2 gap-8 items-center py-12 z-10">
+  <header class="relative bg-[#EAE8E4] min-h-[40vh] md:min-h-[70vh] flex items-center overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 w-full grid md:grid-cols-2 gap-8 items-center py-12">
       <div class="max-w-xl text-left">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-light tracking-tighter leading-none mb-6">
-          WEAR YOUR <br />
-          <span class="font-normal italic">CONFIDENCE</span>
+        <h1 class="text-4xl md:text-6xl font-serif font-light tracking-tighter leading-none mb-4">
+          WEAR YOUR <br /><span class="font-normal italic">CONFIDENCE</span>
         </h1>
-        <p class="text-gray-600 text-xs md:text-sm mb-8 max-w-sm leading-relaxed font-medium">
-          Trendy pieces. Timeless style. CELOSIA has everything you need to look and feel your best.
+        <p class="text-gray-600 text-xs md:text-sm mb-6 max-w-sm leading-relaxed font-medium">
+          Trendy pieces. Timeless style. CELOSIA has everything you need.
         </p>
-        <div>
-          <a href="products.html" class="bg-black text-white px-8 py-3.5 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-gray-800 transition inline-block">Shop New In</a>
-        </div>
-      </div>
-      <div class="hidden md:flex justify-end relative h-full">
-        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=600" alt="Lookbook" class="w-[340px] lg:w-[400px] h-[480px] object-cover rounded-t-full shadow-2xl border-4 border-white/50">
+        <a href="products.html" class="bg-black text-white px-8 py-3.5 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-gray-800 transition inline-block">Shop New In</a>
       </div>
     </div>
   </header>
 
-  <div class="max-w-6xl mx-auto px-4 -mt-8 relative z-20">
-    <div class="bg-white shadow-xl rounded-xl p-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center border border-gray-100 text-xs font-bold uppercase tracking-widest">
-      <div class="py-2">🚚 Free Shipping</div>
-      <div class="py-2">🔄 Easy Returns</div>
-      <div class="py-2">💳 Secure Payment</div>
-      <div class="py-2">📍 Near Stores</div>
-    </div>
-  </div>
-
-  <section class="max-w-7xl mx-auto px-4 md:px-8 py-16">
-    <h2 class="text-sm md:text-base font-bold uppercase tracking-widest font-serif mb-8 border-b pb-2">Shop By Category</h2>
-    <div class="grid grid-cols-4 gap-4 text-center">
-      <a href="products.html" class="group flex flex-col items-center">
-        <div class="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-100 overflow-hidden mb-2 border"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=200" class="w-full h-full object-cover"></div>
-        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 group-hover:text-black">Tops</span>
-      </a>
-      <a href="products.html" class="group flex flex-col items-center">
-        <div class="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-100 overflow-hidden mb-2 border"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=200" class="w-full h-full object-cover"></div>
-        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 group-hover:text-black">Jeans</span>
-      </a>
-      <a href="products.html" class="group flex flex-col items-center">
-        <div class="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-100 overflow-hidden mb-2 border"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=200" class="w-full h-full object-cover"></div>
-        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 group-hover:text-black">Shirts</span>
-      </a>
-      <a href="products.html" class="group flex flex-col items-center">
-        <div class="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-100 overflow-hidden mb-2 border"><img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=200" class="w-full h-full object-cover"></div>
-        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 group-hover:text-black">Sweaters</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="max-w-7xl mx-auto px-4 md:px-8 py-6 pb-20">
-    <h2 class="text-sm md:text-base font-bold uppercase tracking-widest font-serif mb-8 border-b pb-2">Featured Collection</h2>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-8">
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-12">
+    <h2 class="text-xs md:text-sm font-bold uppercase tracking-widest font-serif mb-6 border-b pb-2">Curated Inventory</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
       
       <div class="group flex flex-col">
         <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
@@ -117,50 +80,17 @@
         <span class="text-xs font-bold text-gray-500 mt-0.5">$49.90</span>
       </div>
 
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Linen Blend Shirt</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$34.90</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=400" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Oversized Sweater</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$39.90</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=400" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Classic Leather Mules</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$65.00</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-lg overflow-hidden aspect-[3/4]">
-          <a href="product-detail.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=400" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="product-detail.html" class="text-xs font-semibold mt-3 hover:underline">Tailored Autumn Coat</a>
-        <span class="text-xs font-bold text-gray-500 mt-0.5">$110.00</span>
-      </div>
-
     </div>
   </section>
 
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 h-16 px-6 flex items-center justify-between z-50 shadow-lg">
+    <a href="index.html" class="flex flex-col items-center justify-center text-xl text-black">🏠<span class="text-[9px] font-bold tracking-wider mt-0.5">Home</span></a>
+    <a href="products.html" class="flex flex-col items-center justify-center text-xl text-gray-400 hover:text-black">🔍<span class="text-[9px] font-bold tracking-wider mt-0.5">Search</span></a>
+    <a href="login.html" class="flex flex-col items-center justify-center text-xl text-gray-400 hover:text-black">🧾<span class="text-[9px] font-bold tracking-wider mt-0.5">Orders</span></a>
+    <a href="login.html" class="flex flex-col items-center justify-center text-xl text-gray-400 hover:text-black">👤<span class="text-[9px] font-bold tracking-wider mt-0.5">Profile</span></a>
+  </div>
+
   <script src="script.js"></script>
 </body>
-            </html>
-    
+  </html>
+        
