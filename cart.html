@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Bag | C-STYLE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased">
+
+  <nav class="border-b border-gray-200 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold tracking-widest font-serif">C-STYLE</a>
+      <a href="products.html" class="text-xs font-bold uppercase text-gray-500 hover:text-black">Continue Shopping →</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-4 py-12">
+    <h1 class="text-2xl md:text-3xl font-serif font-light mb-8">Your Shopping Bag</h1>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <div class="md:col-span-2 space-y-4">
+        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex space-x-4">
+          <div class="w-20 h-24 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=200" alt="Item" class="w-full h-full object-cover">
+          </div>
+          <div class="flex-grow flex flex-col justify-between py-1">
+            <div>
+              <h3 class="text-xs md:text-sm font-semibold text-gray-800">Ribbed Knit Top</h3>
+              <p class="text-[10px] text-gray-400 font-medium mt-0.5">Size: S | Color: Oat</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-xs font-bold text-gray-900">$29.90</span>
+              <button class="text-[11px] font-bold text-red-500 uppercase tracking-wider hover:opacity-70">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-lg h-fit space-y-4">
+        <h3 class="text-xs font-bold uppercase tracking-widest border-b border-gray-100 pb-3">Order Summary</h3>
+        <div class="space-y-2 text-xs font-medium text-gray-600">
+          <div class="flex justify-between"><span>Subtotal</span> <span class="text-gray-900 font-bold">$29.90</span></div>
+          <div class="flex justify-between"><span>Shipping</span> <span class="text-green-600 font-bold">FREE</span></div>
+          <div class="flex justify-between"><span>Estimated Tax</span> <span class="text-gray-900 font-bold">$0.00</span></div>
+        </div>
+        <hr class="border-gray-100">
+        <div class="flex justify-between text-sm font-bold">
+          <span>Total Estimated</span>
+          <span class="text-lg">$29.90</span>
+        </div>
+        <a href="checkout.html" class="block bg-black text-white text-center text-xs uppercase tracking-widest font-bold py-3.5 rounded-lg shadow-md hover:bg-gray-800 transition mt-4">
+          Proceed To Checkout
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+        </html>
+  
