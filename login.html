@@ -120,14 +120,15 @@
 
         if (isSignUpMode) {
           alert("✨ Registration Successful! Please sign in with your new credentials.");
-          // Switch back to login automatically
           toggleAuthMode.click();
         } else {
           // Store active secure session data locally
           localStorage.setItem("celosia_session", JSON.stringify(data));
           localStorage.setItem("celosia_user_email", email);
           alert("🔒 Premium Secure Session Verified!");
-          window.location.href = "index.html"; // Redirect smoothly to home
+          
+          // DIRECTLY SENDING USER TO PROFILE DASHBOARD NOW!
+          window.location.href = "profile.html"; 
         }
 
       } catch (error) {
@@ -140,4 +141,4 @@
   </script>
 </body>
             </html>
-          
+            
