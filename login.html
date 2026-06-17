@@ -21,21 +21,21 @@
     <div class="bg-white max-w-md w-full p-8 rounded-2xl border border-gray-100 shadow-xl space-y-6">
       
       <div class="text-center space-y-1">
-        <h2 class="text-xl font-bold font-serif uppercase tracking-wide">Welcome to CELOSIA</h2>
-        <p class="text-xs text-gray-400 font-medium">Sign in to track your Amazon style luxury dashboard.</p>
+        <h2 id="auth-title" class="text-xl font-bold font-serif uppercase tracking-wide">Welcome to CELOSIA</h2>
+        <p id="auth-subtitle" class="text-xs text-gray-400 font-medium">Sign in to track your Amazon style luxury dashboard.</p>
       </div>
 
-      <form class="space-y-4 text-xs font-semibold" onsubmit="event.preventDefault(); window.location.href='index.html';">
+      <form id="auth-form" class="space-y-4 text-xs font-semibold">
         <div>
           <label class="block text-gray-500 mb-1">Email Address</label>
-          <input type="email" placeholder="name@domain.com" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
+          <input type="email" id="auth-email" placeholder="name@domain.com" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
         </div>
         <div>
           <label class="block text-gray-500 mb-1">Password</label>
-          <input type="password" placeholder="••••••••" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
+          <input type="password" id="auth-password" placeholder="••••••••" required class="w-full bg-gray-50 border rounded-lg p-3 focus:outline-none focus:border-black font-medium">
         </div>
 
-        <button type="submit" class="w-full bg-black text-white text-center py-3.5 rounded-lg text-[11px] uppercase tracking-widest font-bold shadow-md hover:bg-gray-800 transition">
+        <button type="submit" id="submit-btn" class="w-full bg-black text-white text-center py-3.5 rounded-lg text-[11px] uppercase tracking-widest font-bold shadow-md hover:bg-gray-800 transition">
           Sign In
         </button>
       </form>
@@ -46,19 +46,98 @@
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
 
-      <button onclick="alert('Google Authentication Portal Activated!');" class="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-50 transition flex items-center justify-center space-x-2">
+      <button onclick="alert('Google Authentication Portal is sync-ready!');" class="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-50 transition flex items-center justify-center space-x-2">
         <img src="https://www.gstatic.com/images/branding/product/1x/gsa_android_loupe_72dp.png" alt="Google Logo" class="w-4 h-4 object-contain">
         <span>Continue with Google</span>
       </button>
 
       <div class="border-t pt-4 text-center text-xs font-medium text-gray-400">
-        Don't have an account? <a href="#" onclick="alert('Registration form coming soon!');" class="text-black font-bold underline">Create profile</a>
+        <span id="toggle-text">Don't have an account?</span> 
+        <a href="#" id="toggle-auth-mode" class="text-black font-bold underline">Create profile</a>
       </div>
 
     </div>
   </main>
 
   <script src="script.js"></script>
+  
+  <script>
+    let isSignUpMode = false;
+    const authForm = document.getElementById("auth-form");
+    const authTitle = document.getElementById("auth-title");
+    const authSubtitle = document.getElementById("auth-subtitle");
+    const submitBtn = document.getElementById("submit-btn");
+    const toggleAuthMode = document.getElementById("toggle-auth-mode");
+    const toggleText = document.getElementById("toggle-text");
+
+    // Toggle switch between Login and Signup modes smoothly
+    toggleAuthMode.addEventListener("click", (e) => {
+      e.preventDefault();
+      isSignUpMode = !isSignUpMode;
+      
+      if (isSignUpMode) {
+        authTitle.textContent = "Create Profile";
+        authSubtitle.textContent = "Join the elite collection system today.";
+        submitBtn.textContent = "Register Account";
+        toggleText.textContent = "Already have a profile?";
+        toggleAuthMode.textContent = "Sign In";
+      } else {
+        authTitle.textContent = "Welcome to CELOSIA";
+        authSubtitle.textContent = "Sign in to track your Amazon style luxury dashboard.";
+        submitBtn.textContent = "Sign In";
+        toggleText.textContent = "Don't have an account?";
+        toggleAuthMode.textContent = "Create profile";
+      }
+    });
+
+    // Handle form submissions using Supabase REST API Authentication
+    authForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById("auth-email").value;
+      const password = document.getElementById("auth-password").value;
+      
+      // Determine endpoint based on mode selected
+      const endpoint = isSignUpMode ? "signup" : "token?grant_type=password";
+      submitBtn.textContent = "Processing Secure Request...";
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/auth/v1/${endpoint}`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error_description || data.msg || "Authentication Failed");
+        }
+
+        if (isSignUpMode) {
+          alert("✨ Registration Successful! Please sign in with your new credentials.");
+          // Switch back to login automatically
+          toggleAuthMode.click();
+        } else {
+          // Store active secure session data locally
+          localStorage.setItem("celosia_session", JSON.stringify(data));
+          localStorage.setItem("celosia_user_email", email);
+          alert("🔒 Premium Secure Session Verified!");
+          window.location.href = "index.html"; // Redirect smoothly to home
+        }
+
+      } catch (error) {
+        alert("⚠️ Authentication Alert: " + error.message);
+      } finally {
+        submitBtn.textContent = isSignUpMode ? "Register Account" : "Sign In";
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 </body>
-  </html>
-                                 
+            </html>
+          
