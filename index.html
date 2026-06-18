@@ -79,47 +79,47 @@
       <a href="products.html" class="text-[11px] font-bold uppercase tracking-wider underline hover:text-gray-500">View All</a>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 md:gap-x-8">
+    <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 md:gap-x-8">
       
       <div class="group flex flex-col">
         <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
           <span class="absolute top-3 left-3 bg-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">Best Seller</span>
-          <a href="product-detail.html" class="block w-full h-full">
+          <a href="products.html" class="block w-full h-full">
             <img src="https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
           </a>
         </div>
-        <a href="product-detail.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Ribbed Knit Top</a>
+        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Ribbed Knit Top</a>
         <span class="text-xs font-bold text-gray-400 mt-1">$29.90</span>
       </div>
 
       <div class="group flex flex-col">
         <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-          <a href="product-detail.html" class="block w-full h-full">
+          <a href="products.html" class="block w-full h-full">
             <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
           </a>
         </div>
-        <a href="product-detail.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Wide-Leg Jeans</a>
+        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Wide-Leg Jeans</a>
         <span class="text-xs font-bold text-gray-400 mt-1">$49.90</span>
       </div>
 
       <div class="group flex flex-col">
         <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
           <span class="absolute top-3 left-3 bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">New</span>
-          <a href="product-detail.html" class="block w-full h-full">
+          <a href="products.html" class="block w-full h-full">
             <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
           </a>
         </div>
-        <a href="product-detail.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Satin Slip Dress</a>
+        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Satin Slip Dress</a>
         <span class="text-xs font-bold text-gray-400 mt-1">$75.00</span>
       </div>
 
       <div class="group flex flex-col">
         <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-          <a href="product-detail.html" class="block w-full h-full">
+          <a href="products.html" class="block w-full h-full">
             <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
           </a>
         </div>
-        <a href="product-detail.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Tailored Autumn Coat</a>
+        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Tailored Autumn Coat</a>
         <span class="text-xs font-bold text-gray-400 mt-1">$110.00</span>
       </div>
 
@@ -135,7 +135,7 @@
       <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
       <span class="text-[9px] font-bold tracking-widest uppercase">Search</span>
     </button>
-    <a href="orders-tracker.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-black transition">
+    <a href="login.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-black transition">
       <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
       <span class="text-[9px] font-bold tracking-widest uppercase">Orders</span>
     </a>
@@ -145,6 +145,7 @@
     </a>
   </div>
 
+  <script src="script.js"></script>
   <script>
     function toggleMobileSearch() {
       const drawer = document.getElementById('mobile-search-drawer');
@@ -157,8 +158,50 @@
         drawer.classList.add('search-inactive');
       }
     }
+
+    // Dynamic Database Fetcher for Premium Homepage
+    async function fetchLiveFeaturedItems() {
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&limit=4`, {
+          method: "GET",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        
+        if (!response.ok) return; // Keep backup if response fails
+        const items = await response.json();
+        
+        if (items && items.length > 0) {
+          const grid = document.getElementById("featured-grid");
+          grid.innerHTML = ""; // Clear static data smoothly
+          
+          items.forEach((product, idx) => {
+            const badge = idx === 0 ? `<span class="absolute top-3 left-3 bg-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">Best Seller</span>` : idx === 2 ? `<span class="absolute top-3 left-3 bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">New</span>` : '';
+            
+            grid.innerHTML += `
+              <div class="group flex flex-col">
+                <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
+                  ${badge}
+                  <a href="products.html" class="block w-full h-full">
+                    <img src="${product.image_url || 'https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400'}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400'">
+                  </a>
+                </div>
+                <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">${product.name}</a>
+                <span class="text-xs font-bold text-gray-400 mt-1">$${parseFloat(product.price).toFixed(2)}</span>
+              </div>
+            `;
+          });
+        }
+      } catch (err) {
+        console.log("Database offline or backup mode active:", err);
+      }
+    }
+
+    // Start loading system on mount
+    window.addEventListener("DOMContentLoaded", fetchLiveFeaturedItems);
   </script>
-  <script src="script.js"></script>
 </body>
-  </html>
-                                                                                            
+              </html>
+              
