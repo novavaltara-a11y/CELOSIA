@@ -22,7 +22,7 @@
       
       <div class="text-center space-y-1">
         <h2 id="auth-title" class="text-xl font-bold font-serif uppercase tracking-wide">Welcome to CELOSIA</h2>
-        <p id="auth-subtitle" class="text-xs text-gray-400 font-medium">Sign in to track your Amazon style luxury dashboard.</p>
+        <p id="auth-subtitle" class="text-xs text-gray-400 font-medium">Sign in to manage your premium fashion profile.</p>
       </div>
 
       <form id="auth-form" class="space-y-4 text-xs font-semibold">
@@ -70,36 +70,33 @@
     const toggleAuthMode = document.getElementById("toggle-auth-mode");
     const toggleText = document.getElementById("toggle-text");
 
-    // Toggle switch between Login and Signup modes smoothly
     toggleAuthMode.addEventListener("click", (e) => {
       e.preventDefault();
       isSignUpMode = !isSignUpMode;
       
       if (isSignUpMode) {
         authTitle.textContent = "Create Profile";
-        authSubtitle.textContent = "Join the elite collection system today.";
+        authSubtitle.textContent = "Join our exclusive collection matrix.";
         submitBtn.textContent = "Register Account";
         toggleText.textContent = "Already have a profile?";
         toggleAuthMode.textContent = "Sign In";
       } else {
         authTitle.textContent = "Welcome to CELOSIA";
-        authSubtitle.textContent = "Sign in to track your Amazon style luxury dashboard.";
+        authSubtitle.textContent = "Sign in to manage your premium fashion profile.";
         submitBtn.textContent = "Sign In";
         toggleText.textContent = "Don't have an account?";
         toggleAuthMode.textContent = "Create profile";
       }
     });
 
-    // Handle form submissions using Supabase REST API Authentication
     authForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       
       const email = document.getElementById("auth-email").value;
       const password = document.getElementById("auth-password").value;
-      
-      // Determine endpoint based on mode selected
       const endpoint = isSignUpMode ? "signup" : "token?grant_type=password";
-      submitBtn.textContent = "Processing Secure Request...";
+      
+      submitBtn.textContent = "Verifying Secure Credentials...";
       submitBtn.disabled = true;
 
       try {
@@ -119,20 +116,17 @@
         }
 
         if (isSignUpMode) {
-          alert("✨ Registration Successful! Please sign in with your new credentials.");
+          alert("✨ Profile Registered Successfully! Proceeding to Sign In.");
           toggleAuthMode.click();
         } else {
-          // Store active secure session data locally
           localStorage.setItem("celosia_session", JSON.stringify(data));
           localStorage.setItem("celosia_user_email", email);
-          alert("🔒 Premium Secure Session Verified!");
-          
-          // DIRECTLY SENDING USER TO PROFILE DASHBOARD NOW!
+          alert("🔒 Private Session Verified.");
           window.location.href = "profile.html"; 
         }
 
       } catch (error) {
-        alert("⚠️ Authentication Alert: " + error.message);
+        alert("⚠️ System Alert: " + error.message);
       } finally {
         submitBtn.textContent = isSignUpMode ? "Register Account" : "Sign In";
         submitBtn.disabled = false;
@@ -141,4 +135,4 @@
   </script>
 </body>
             </html>
-            
+          
