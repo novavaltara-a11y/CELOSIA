@@ -13,7 +13,6 @@
     <a href="index.html" class="text-lg font-bold tracking-widest font-serif">CELOSIA</a>
     <div class="flex space-x-4 text-xs font-bold uppercase text-gray-500">
       <a href="index.html" class="hover:text-black">Home</a>
-      <a href="admin.html" class="text-gray-400 hover:text-black">⚙️ ADMIN</a>
     </div>
   </nav>
 
@@ -46,7 +45,7 @@
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
 
-      <button onclick="alert('Google Authentication Portal is sync-ready!');" class="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-50 transition flex items-center justify-center space-x-2">
+      <button type="button" onclick="console.log('Google Portal Ready');" class="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-50 transition flex items-center justify-center space-x-2">
         <img src="https://www.gstatic.com/images/branding/product/1x/gsa_android_loupe_72dp.png" alt="Google Logo" class="w-4 h-4 object-contain">
         <span>Continue with Google</span>
       </button>
@@ -62,6 +61,15 @@
   <script src="script.js"></script>
   
   <script>
+    // BACK-BUTTON FIX & AUTO REDIRECT (No Alerts)
+    document.addEventListener("DOMContentLoaded", () => {
+      const session = localStorage.getItem("celosia_session");
+      const savedEmail = localStorage.getItem("celosia_user_email");
+      if (session && savedEmail) {
+        window.location.replace("profile.html");
+      }
+    });
+
     let isSignUpMode = false;
     const authForm = document.getElementById("auth-form");
     const authTitle = document.getElementById("auth-title");
@@ -96,7 +104,7 @@
       const password = document.getElementById("auth-password").value;
       const endpoint = isSignUpMode ? "signup" : "token?grant_type=password";
       
-      submitBtn.textContent = "Verifying Secure Credentials...";
+      submitBtn.textContent = "Verifying...";
       submitBtn.disabled = true;
 
       try {
@@ -116,16 +124,32 @@
         }
 
         if (isSignUpMode) {
-          alert("✨ Profile Registered Successfully! Proceeding to Sign In.");
-          toggleAuthMode.click();
+          // Signup success: Automatically switch to login mode silently without alert
+          isSignUpMode = false;
+          authTitle.textContent = "Welcome to CELOSIA";
+          authSubtitle.textContent = "Sign in to manage your premium fashion profile.";
+          submitBtn.textContent = "Sign In";
+          toggleText.textContent = "Don't have an account?";
+          toggleAuthMode.textContent = "Create profile";
+          
+          // Clear password for safety, keep email filled for convenience
+          document.getElementById("auth-password").value = "";
         } else {
+          // Signin success: Save credentials and direct seamless redirect
           localStorage.setItem("celosia_session", JSON.stringify(data));
           localStorage.setItem("celosia_user_email", email);
-          alert("🔒 Private Session Verified.");
+          
+          if (data.user && data.user.user_metadata && data.user.user_metadata.role === "admin") {
+            localStorage.setItem("celosia_user_role", "admin");
+          } else {
+            localStorage.removeItem("celosia_user_role");
+          }
+          
           window.location.href = "profile.html"; 
         }
 
       } catch (error) {
+        // Only show alert if there is a real system failure or wrong credentials
         alert("⚠️ System Alert: " + error.message);
       } finally {
         submitBtn.textContent = isSignUpMode ? "Register Account" : "Sign In";
@@ -134,5 +158,5 @@
     });
   </script>
 </body>
-            </html>
+    </html>
           
