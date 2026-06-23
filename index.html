@@ -3,205 +3,285 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CELOSIA | Premium Fashion Store</title>
+  <title>CELOSIA | Exclusive House of Design</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    .search-slide { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .search-active { transform: translateY(0); opacity: 1; pointer-events: auto; }
-    .search-inactive { transform: translateY(-20px); opacity: 0; pointer-events: none; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .luxury-title { font-family: 'Cormorant Garamond', serif; }
+    
+    /* Premium Smooth Transition Effects */
+    .fade-in-luxury {
+      animation: luxurySmoothView 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes luxurySmoothView {
+      from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
   </style>
 </head>
-<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased pb-24 md:pb-0">
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen">
 
-  <div class="bg-black text-white text-[10px] md:text-xs py-2.5 text-center tracking-widest uppercase font-semibold select-none">
-    FREE SHIPPING ON ORDERS OVER $75 | EASY RETURNS
+  <div id="gatekeeper-auth-view" class="hidden min-h-screen flex items-center justify-center px-4 bg-[#FBFBFA] relative overflow-hidden">
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-[#F4F4F3] -top-40 -left-40 blur-3xl opacity-60 pointer-events-none"></div>
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-[#EFEFEF] -bottom-20 -right-20 blur-3xl opacity-50 pointer-events-none"></div>
+    
+    <div class="bg-white max-w-sm w-full p-8 rounded-2xl border border-gray-100/80 shadow-[0_20px_50px_rgba(0,0,0,0.03)] space-y-6 relative z-10 fade-in-luxury">
+      <div class="text-center space-y-1">
+        <h2 id="auth-title" class="text-2xl font-bold luxury-title uppercase tracking-[0.2em] text-gray-900">CELOSIA</h2>
+        <div class="w-8 h-[1px] bg-black mx-auto my-2"></div>
+        <p id="auth-subtitle" class="text-[11px] text-gray-400 font-medium tracking-wide">Unlock our private boutique collection view.</p>
+      </div>
+
+      <form id="auth-form" class="space-y-4 text-xs font-semibold">
+        <div>
+          <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Email Coordinates</label>
+          <input type="email" id="auth-email" required placeholder="name@luxury.com" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
+        </div>
+        <div>
+          <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Security Vault Key</label>
+          <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
+        </div>
+        <button type="submit" id="submit-btn" class="w-full bg-black text-white py-4 rounded-xl text-[10px] uppercase tracking-[0.2em] font-bold shadow-lg shadow-black/5 hover:bg-gray-800 transition duration-300">
+          Unlock Showcase
+        </button>
+      </form>
+
+      <div class="text-center text-[11px] font-semibold text-gray-400 border-t border-gray-50 pt-4">
+        <span id="toggle-text">First time encountering Celosia?</span> 
+        <a href="#" id="toggle-mode" class="text-black font-bold underline ml-1">Create Access</a>
+      </div>
+    </div>
   </div>
 
-  <nav class="border-b border-gray-100 bg-white/90 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
-      
-      <a href="index.html" class="text-xl md:text-2xl font-bold tracking-widest font-serif">CELOSIA</a>
-
-      <div class="hidden md:flex space-x-10 text-[11px] uppercase font-bold tracking-widest text-gray-500">
-        <a href="products.html" class="hover:text-black transition">COLLECTIONS</a>
-        <a href="about.html" class="hover:text-black transition">OUR STORY</a>
-        <a href="admin.html" class="text-gray-400 hover:text-black transition font-bold tracking-widest">⚙️ ADMIN</a>
+  <div id="main-store-content" class="hidden flex-col min-h-screen pb-24 md:pb-0">
+    
+    <nav class="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 px-4 py-4 md:py-6">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="index.html" class="text-xl md:text-2xl font-bold tracking-widest luxury-title uppercase">CELOSIA</a>
+        <div class="hidden md:flex space-x-8 text-[11px] uppercase font-bold tracking-widest text-gray-500 items-center">
+          <a href="index.html" class="text-black transition">Home</a>
+          <a href="products.html" class="hover:text-black transition">Collections</a>
+          <a href="cart.html" class="hover:text-black transition">Cart</a>
+          <a href="orders-tracker.html" class="hover:text-black transition">Logistics</a>
+          <a href="profile.html" class="hover:text-black transition">Account Matrix</a>
+          <a id="nav-admin-control" href="admin.html" class="hidden text-amber-700 bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full transition font-bold">⚙️ ADMIN PANEL</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button onclick="triggerSystemLogout()" class="text-[10px] font-bold uppercase tracking-wider text-red-400 hover:text-red-600 border border-transparent hover:border-red-100 px-3 py-1.5 rounded-full transition">Exit 🚪</button>
+        </div>
       </div>
+    </nav>
 
-      <div class="flex items-center space-x-5">
-        <div class="relative hidden sm:block">
-          <input id="global-search" type="text" placeholder="Search fashion portfolio..." class="bg-[#F3F3F2] text-xs px-5 py-2.5 rounded-full w-48 lg:w-60 focus:outline-none border border-transparent focus:border-gray-300 font-medium"/>
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-8 flex-grow w-full space-y-12">
+      <section class="relative bg-[#F3F3F2] rounded-3xl overflow-hidden aspect-[16/7] flex items-center p-8 md:p-16 border border-gray-100">
+        <div class="max-w-md space-y-4 relative z-10">
+          <span class="text-[9px] uppercase font-bold tracking-[0.3em] text-gray-400 block">Season Core Collection</span>
+          <h1 class="text-3xl md:text-5xl font-light luxury-title tracking-wide leading-tight">Architecture of Pure Silhouettes</h1>
+          <a href="products.html" class="inline-block bg-black text-white text-[10px] uppercase tracking-widest font-bold px-6 py-3.5 rounded-xl shadow-md hover:bg-gray-800 transition">Explore Catalogue</a>
+        </div>
+        <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center opacity-90 hidden md:block" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600');"></div>
+      </section>
+
+      <section class="space-y-6">
+        <div class="flex justify-between items-baseline border-b border-gray-100 pb-3">
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Curated Architecture</h3>
+          <a href="products.html" class="text-[11px] font-bold uppercase tracking-wider text-black underline">View All Assets</a>
         </div>
         
-        <button onclick="alert('Wishlist vault synced successfully.');" class="text-lg hover:opacity-60 relative transition">
-          🤍 <span id="like-count" class="absolute -top-1.5 -right-1.5 bg-black text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
-        </button>
-
-        <a href="cart.html" class="text-lg hover:opacity-60 relative transition">
-          🛍️ <span id="cart-count" class="absolute -top-1.5 -right-1.5 bg-black text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
-        </a>
-        <a href="login.html" class="text-lg hover:opacity-60 hidden md:block transition">👤</a>
-      </div>
-    </div>
-
-    <div id="mobile-search-drawer" class="search-slide search-inactive bg-white border-b px-4 py-3 md:hidden absolute left-0 right-0 top-16 shadow-md">
-      <div class="flex items-center space-x-2">
-        <input id="mobile-search-input" type="text" placeholder="Type pattern, size, fabric..." class="w-full bg-[#F3F3F2] text-xs px-4 py-3 rounded-xl focus:outline-none font-semibold border focus:border-gray-300" />
-        <button onclick="toggleMobileSearch();" class="text-xs font-bold uppercase tracking-wider text-gray-400 px-2">Close</button>
-      </div>
-    </div>
-  </nav>
-
-  <header class="relative bg-[#EAE8E4] min-h-[60vh] flex items-center overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 w-full grid md:grid-cols-12 gap-8 items-center py-16">
-      <div class="max-w-xl text-left space-y-6 md:col-span-7">
-        <span class="text-[10px] bg-white border border-gray-300 px-3 py-1 rounded-full uppercase tracking-widest font-bold text-gray-600">Summer Editorial '26</span>
-        <h1 class="text-5xl md:text-7xl font-serif font-light tracking-tight leading-tight">
-          WEAR YOUR <br /><span class="font-normal italic text-gray-700">CONFIDENCE</span>
-        </h1>
-        <p class="text-gray-600 text-xs md:text-sm max-w-sm leading-relaxed font-medium">
-          Timeless silhouettes engineered with premium textile balances. Curated carefully for modern urban aesthetics.
-        </p>
-        <div class="pt-2">
-          <a href="products.html" class="bg-black text-white px-10 py-4 rounded-full text-[11px] uppercase tracking-widest font-bold hover:bg-gray-800 transition shadow-xl inline-block">Explore Catalog</a>
+        <div id="homepage-products-display" class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10">
+          <p class="text-xs text-gray-400 animate-pulse col-span-full">Synchronizing architectural ledger matrices...</p>
         </div>
-      </div>
-      <div class="hidden md:flex md:col-span-5 justify-end">
-        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=600" class="w-[380px] h-[520px] object-cover rounded-2xl shadow-2xl border border-white/40">
-      </div>
-    </div>
-  </header>
+      </section>
+    </main>
 
-  <section class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-    <div class="flex justify-between items-baseline mb-12 border-b pb-4">
-      <h2 class="text-xs font-bold uppercase tracking-widest font-serif text-gray-400">Featured Inventory</h2>
-      <a href="products.html" class="text-[11px] font-bold uppercase tracking-wider underline hover:text-gray-500">View All</a>
-    </div>
-
-    <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 md:gap-x-8">
+    <div class="fixed bottom-24 md:bottom-8 right-6 z-50 flex flex-col items-end">
+      <div id="ai-chat-window" class="hidden w-80 md:w-96 h-[450px] bg-white border border-gray-100 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] flex-col overflow-hidden mb-4 fade-in-luxury">
+        <div class="bg-black p-4 text-white flex justify-between items-center">
+          <div>
+            <h4 class="text-xs font-bold tracking-widest uppercase">CELOSIA CONCIERGE</h4>
+            <p class="text-[9px] text-gray-400 font-medium">Digital Style Assistant</p>
+          </div>
+          <button onclick="toggleAiChat()" class="text-gray-400 hover:text-white text-sm transition">✕</button>
+        </div>
+        <div id="ai-chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs bg-[#FBFBFA]">
+          <div class="bg-white border border-gray-100 text-gray-700 p-3 rounded-2xl max-w-[85%] shadow-sm">
+            Greetings. I am your automated style concierge. How may I assist you with our collections today?
+          </div>
+        </div>
+        <form id="ai-chat-form" class="p-3 bg-white border-t border-gray-50 flex gap-2">
+          <input type="text" id="ai-chat-input" placeholder="Ask about styles, orders..." class="flex-grow bg-gray-50 border border-gray-100 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-black font-medium transition-all">
+          <button type="submit" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-wider hover:bg-gray-800 transition">Send</button>
+        </form>
+      </div>
       
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-          <span class="absolute top-3 left-3 bg-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">Best Seller</span>
-          <a href="products.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Ribbed Knit Top</a>
-        <span class="text-xs font-bold text-gray-400 mt-1">$29.90</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-          <a href="products.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Wide-Leg Jeans</a>
-        <span class="text-xs font-bold text-gray-400 mt-1">$49.90</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-          <span class="absolute top-3 left-3 bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">New</span>
-          <a href="products.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Satin Slip Dress</a>
-        <span class="text-xs font-bold text-gray-400 mt-1">$75.00</span>
-      </div>
-
-      <div class="group flex flex-col">
-        <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-          <a href="products.html" class="block w-full h-full">
-            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-          </a>
-        </div>
-        <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">Tailored Autumn Coat</a>
-        <span class="text-xs font-bold text-gray-400 mt-1">$110.00</span>
-      </div>
-
+      <button onclick="toggleAiChat()" class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">
+        <span class="text-lg">✦</span>
+      </button>
     </div>
-  </section>
 
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 h-20 px-8 flex items-center justify-between z-50 shadow-2xl rounded-t-2xl">
-    <a href="index.html" class="flex flex-col items-center justify-center text-black">
-      <svg class="w-5 h-5 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      <span class="text-[9px] font-bold tracking-widest uppercase">Home</span>
-    </a>
-    <button onclick="toggleMobileSearch();" class="flex flex-col items-center justify-center text-gray-400 hover:text-black transition">
-      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      <span class="text-[9px] font-bold tracking-widest uppercase">Search</span>
-    </button>
-    <a href="login.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-black transition">
-      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-      <span class="text-[9px] font-bold tracking-widest uppercase">Orders</span>
-    </a>
-    <a href="login.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-black transition">
-      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-      <span class="text-[9px] font-bold tracking-widest uppercase">Profile</span>
-    </a>
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-100 h-20 px-6 flex items-center justify-between z-50 shadow-2xl rounded-t-2xl">
+      <a href="index.html" class="flex flex-col items-center justify-center text-black">
+        <span class="text-lg">🏠</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Home</span>
+      </a>
+      <a href="products.html" class="flex flex-col items-center justify-center text-gray-400">
+        <span class="text-lg">🔍</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Search</span>
+      </a>
+      <a href="cart.html" class="flex flex-col items-center justify-center text-gray-400">
+        <span class="text-lg">🛒</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Cart</span>
+      </a>
+      <a href="orders-tracker.html" class="flex flex-col items-center justify-center text-gray-400">
+        <span class="text-lg">📦</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Orders</span>
+      </a>
+      <a href="profile.html" class="flex flex-col items-center justify-center text-gray-400">
+        <span class="text-lg">👤</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Profile</span>
+      </a>
+    </div>
+
   </div>
 
   <script src="script.js"></script>
   <script>
-    function toggleMobileSearch() {
-      const drawer = document.getElementById('mobile-search-drawer');
-      if (drawer.classList.contains('search-inactive')) {
-        drawer.classList.remove('search-inactive');
-        drawer.classList.add('search-active');
-        document.getElementById('mobile-search-input').focus();
+    let isSignUpMode = false;
+
+    // Toggle AI Chat Window Functionality
+    function toggleAiChat() {
+      const chatWin = document.getElementById("ai-chat-window");
+      chatWin.classList.toggle("hidden");
+      chatWin.classList.toggle("flex");
+    }
+
+    // Temporary Frontend UI Handler for Chat Inputs (Ready for API Connection)
+    document.getElementById("ai-chat-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const inputEl = document.getElementById("ai-chat-input");
+      const text = inputEl.value.trim();
+      if (!text) return;
+
+      const msgBox = document.getElementById("ai-chat-messages");
+      
+      // Append User Message
+      msgBox.innerHTML += `
+        <div class="bg-black text-white p-3 rounded-2xl max-w-[85%] ml-auto text-right shadow-sm">
+          ${text}
+        </div>
+      `;
+      
+      inputEl.value = "";
+      msgBox.scrollTop = msgBox.scrollHeight;
+
+      // NOTE: Iske neeche aap apna Fetch API loop call kar sakte hain jo aapke AI server se answer lekar screen par response print karega.
+    });
+
+    // Secure Headless Guard Framework
+    function verifyPlatformState() {
+      const activeUser = localStorage.getItem("celosia_user_email");
+      const userRole = localStorage.getItem("celosia_user_role");
+      
+      if (activeUser) {
+        document.getElementById("gatekeeper-auth-view").classList.add("hidden");
+        document.getElementById("main-store-content").classList.remove("hidden");
+        document.getElementById("main-store-content").classList.add("flex");
+        
+        if (activeUser.includes("admin") || userRole === "admin") {
+          const adminBtn = document.getElementById("nav-admin-control");
+          if(adminBtn) adminBtn.classList.remove("hidden");
+        }
+        loadStoreCatalog();
       } else {
-        drawer.classList.remove('search-active');
-        drawer.classList.add('search-inactive');
+        document.getElementById("main-store-content").classList.remove("flex");
+        document.getElementById("main-store-content").classList.add("hidden");
+        document.getElementById("gatekeeper-auth-view").classList.remove("hidden");
       }
     }
 
-    // Dynamic Database Fetcher for Premium Homepage
-    async function fetchLiveFeaturedItems() {
+    // Toggle Form Modes
+    document.getElementById("toggle-mode").addEventListener("click", (e) => {
+      e.preventDefault();
+      isSignUpMode = !isSignUpMode;
+      document.getElementById("auth-title").textContent = isSignUpMode ? "Create Access" : "CELOSIA";
+      document.getElementById("submit-btn").textContent = isSignUpMode ? "Register Account" : "Unlock Showcase";
+      document.getElementById("toggle-text").textContent = isSignUpMode ? "Already possess security access?" : "First time encountering Celosia?";
+      document.getElementById("toggle-mode").textContent = isSignUpMode ? "Sign In" : "Create Access";
+    });
+
+    // Handle Authentication Processes
+    document.getElementById("auth-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("auth-email").value;
+      const password = document.getElementById("auth-password").value;
+      const targetRoute = isSignUpMode ? "signup" : "token?grant_type=password";
+      
+      document.getElementById("submit-btn").textContent = "Authorizing Token Link...";
+
       try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&limit=4`, {
-          method: "GET",
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Authorization": `Bearer ${SUPABASE_KEY}`
-          }
+        const response = await fetch(`${SUPABASE_URL}/auth/v1/${targetRoute}`, {
+          method: "POST",
+          headers: { "apikey": SUPABASE_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
         });
-        
-        if (!response.ok) return; // Keep backup if response fails
-        const items = await response.json();
-        
-        if (items && items.length > 0) {
-          const grid = document.getElementById("featured-grid");
-          grid.innerHTML = ""; // Clear static data smoothly
-          
-          items.forEach((product, idx) => {
-            const badge = idx === 0 ? `<span class="absolute top-3 left-3 bg-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">Best Seller</span>` : idx === 2 ? `<span class="absolute top-3 left-3 bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm z-10">New</span>` : '';
-            
-            grid.innerHTML += `
-              <div class="group flex flex-col">
-                <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] relative shadow-sm border border-gray-100">
-                  ${badge}
-                  <a href="products.html" class="block w-full h-full">
-                    <img src="${product.image_url || 'https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400'}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400'">
-                  </a>
-                </div>
-                <a href="products.html" class="text-xs font-bold mt-4 tracking-wide hover:underline text-gray-800">${product.name}</a>
-                <span class="text-xs font-bold text-gray-400 mt-1">$${parseFloat(product.price).toFixed(2)}</span>
-              </div>
-            `;
-          });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error_description || payload.msg || "Matrix Refused Authorization");
+
+        if (isSignUpMode) {
+          isSignUpMode = false;
+          document.getElementById("toggle-mode").click();
+          document.getElementById("auth-password").value = "";
+          alert("✨ Registration Complete. Proceed with your fresh access key validation.");
+        } else {
+          localStorage.setItem("celosia_session", JSON.stringify(payload));
+          localStorage.setItem("celosia_user_email", email);
+          if (email.includes("admin")) localStorage.setItem("celosia_user_role", "admin");
+          verifyPlatformState();
         }
       } catch (err) {
-        console.log("Database offline or backup mode active:", err);
+        alert("⚠️ Authentication Error: " + err.message);
+      } {
+        document.getElementById("submit-btn").textContent = isSignUpMode ? "Register Account" : "Unlock Showcase";
+      }
+    });
+
+    // Catalog Rendering Framework via Shared Keys
+    async function loadStoreCatalog() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&limit=4`, {
+          method: "GET",
+          headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+        });
+        if (!res.ok) return;
+        const products = await res.json();
+        
+        const outputContainer = document.getElementById("homepage-products-display");
+        if(products.length === 0) {
+          outputContainer.innerHTML = `<p class="text-xs text-gray-400 font-medium">No design models mapped in current cluster inventory node.</p>`;
+          return;
+        }
+        
+        outputContainer.innerHTML = products.map(p => `
+          <div class="group flex flex-col fade-in-luxury">
+            <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] border border-gray-100 relative">
+              <img src="${p.image_url}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400'">
+            </div>
+            <h4 class="text-xs font-bold mt-3 text-gray-800">${p.name}</h4>
+            <span class="text-xs font-bold text-gray-400 mt-0.5">$${parseFloat(p.price).toFixed(2)}</span>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.log("Catalogue load failure:", err);
       }
     }
 
-    // Start loading system on mount
-    window.addEventListener("DOMContentLoaded", fetchLiveFeaturedItems);
+    function triggerSystemLogout() {
+      localStorage.clear();
+      verifyPlatformState();
+    }
+
+    window.addEventListener("DOMContentLoaded", verifyPlatformState);
   </script>
 </body>
-              </html>
-              
+  </html>
+            
