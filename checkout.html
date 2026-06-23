@@ -3,78 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Checkout | CELOSIA</title>
+  <title>Secure Settlement Matrix | CELOSIA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .luxury-title { font-family: 'Cormorant Garamond', serif; }
+    
+    .fade-in-luxury {
+      animation: luxurySmoothView 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes luxurySmoothView {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <script>
+    // Direct Security Route Guard
+    if(!localStorage.getItem("celosia_user_email") || !localStorage.getItem("celosia_cart")) { 
+      window.location.replace("index.html"); 
+    }
+  </script>
 </head>
-<body class="bg-[#F4F4F3] text-[#1A1A1A] antialiased">
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen pb-24 md:pb-0">
 
-  <nav class="border-b bg-white p-4 flex justify-between items-center">
-    <a href="index.html" class="text-lg font-bold font-serif tracking-widest">CELOSIA</a>
-    <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">🔒 256-Bit SSL Encryption</span>
+  <nav class="border-b border-gray-100 bg-white sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <button onclick="window.location.href='cart.html'" class="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-black flex items-center space-x-1">
+        <span>←</span> <span>Return to Bag</span>
+      </button>
+      <span class="text-xl font-bold tracking-widest luxury-title uppercase">CELOSIA CHECKOUT</span>
+      <div class="w-10"></div>
+    </div>
   </nav>
 
-  <main class="max-w-5xl mx-auto px-4 py-10 grid lg:grid-cols-3 gap-8">
+  <main class="max-w-6xl mx-auto px-4 md:px-8 py-8 flex-grow w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start fade-in-luxury">
     
-    <div class="lg:col-span-2 space-y-6">
+    <section class="lg:col-span-7 bg-white border border-gray-100 rounded-2xl p-6 md:p-8 space-y-6 shadow-sm">
+      <div class="border-b border-gray-50 pb-2">
+        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Shipping Coordinates</h3>
+      </div>
       
-      <div class="bg-white p-6 rounded-xl border shadow-sm space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 border-b pb-2">1. Delivery Address</h3>
-        <div class="grid grid-cols-2 gap-4 text-xs font-semibold">
-          <div class="col-span-2">
-            <label class="text-gray-400 block mb-1">Full Name</label>
-            <input type="text" placeholder="John Doe" class="w-full bg-gray-50 p-3 border rounded-lg focus:outline-none focus:border-black font-medium">
+      <form id="checkout-dispatch-form" class="space-y-4 text-xs font-semibold">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Recipient Identity</label>
+            <input type="text" id="ship-name" required placeholder="John Doe" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
           </div>
           <div>
-            <label class="text-gray-400 block mb-1">Phone Number</label>
-            <input type="text" placeholder="+123456789" class="w-full bg-gray-50 p-3 border rounded-lg focus:outline-none focus:border-black font-medium">
+            <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Telecommunication Line</label>
+            <input type="tel" id="ship-phone" required placeholder="+1 234 567 890" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Architectural Address Coordinates</label>
+          <input type="text" id="ship-address" required placeholder="Suite, Building, Street Address" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Metropolis/City</label>
+            <input type="text" id="ship-city" required placeholder="New York" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
           </div>
           <div>
-            <label class="text-gray-400 block mb-1">Postal Code</label>
-            <input type="text" placeholder="10001" class="w-full bg-gray-50 p-3 border rounded-lg focus:outline-none focus:border-black font-medium">
+            <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Postal/ZIP Index</label>
+            <input type="text" id="ship-zip" required placeholder="10001" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
           </div>
-          <div class="col-span-2">
-            <label class="text-gray-400 block mb-1">Street Address</label>
-            <input type="text" placeholder="Apartment, suite, unit, building" class="w-full bg-gray-50 p-3 border rounded-lg focus:outline-none focus:border-black font-medium">
+          <div>
+            <label class="block text-gray-400 font-bold uppercase tracking-widest text-[9px] mb-1">Country Node</label>
+            <input type="text" id="ship-country" required placeholder="United States" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
           </div>
         </div>
-      </div>
 
-      <div class="bg-white p-6 rounded-xl border shadow-sm space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 border-b pb-2">2. Payment Method</h3>
-        <div class="space-y-3 text-xs font-bold">
-          <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-black cursor-pointer">
-            <input type="radio" name="payment" checked class="accent-black">
-            <span>💳 Credit / Debit Card</span>
-          </label>
-          <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-transparent hover:border-gray-200 cursor-pointer">
-            <input type="radio" name="payment" class="accent-black">
-            <span>💵 Cash On Delivery (COD) / UPI Gateway</span>
-          </label>
+        <div class="pt-4 border-t border-gray-50">
+          <button type="submit" id="checkout-action-btn" class="w-full bg-black text-white py-4 rounded-xl text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-gray-800 transition duration-300 shadow-lg shadow-black/5">
+            Authorize Order Registry
+          </button>
         </div>
+      </form>
+    </section>
+
+    <section class="lg:col-span-5 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6">
+      <div class="border-b border-gray-50 pb-2">
+        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Ledger Evaluation</h3>
       </div>
 
-    </div>
-
-    <div class="space-y-4">
-      <div class="bg-white p-6 rounded-xl border shadow-sm space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 border-b pb-2">Order Summary</h3>
-        
-        <div class="space-y-2 text-xs font-semibold text-gray-500">
-          <div class="flex justify-between"><span>Items Subtotal:</span><span class="text-black font-bold">$29.90</span></div>
-          <div class="flex justify-between"><span>Shipping & Handling:</span><span class="text-green-600 font-bold">FREE</span></div>
-          <div class="h-[1px] bg-gray-100 my-2"></div>
-          <div class="flex justify-between text-sm text-black font-bold"><span>Order Total:</span><span>$29.90</span></div>
+      <div id="checkout-item-ledger" class="space-y-4 max-h-60 overflow-y-auto pr-1">
         </div>
 
-        <button onclick="window.location.href='success.html';" class="w-full bg-black text-white py-4 rounded-xl text-xs uppercase tracking-widest font-bold shadow-lg hover:bg-gray-800 transition text-center block mt-4">
-          Place Secure Order
-        </button>
+      <div class="border-t border-gray-50 pt-4 space-y-3">
+        <div class="flex justify-between text-xs font-semibold text-gray-400">
+          <span>Subtotal Aggregate</span>
+          <span id="checkout-subtotal" class="text-gray-900 font-bold">$0.00</span>
+        </div>
+        <div class="flex justify-between text-xs font-semibold text-gray-400 border-b border-gray-50 pb-3">
+          <span>Courier Distribution</span>
+          <span class="text-green-600 font-bold">Complimentary</span>
+        </div>
+        <div class="flex justify-between text-sm font-bold text-gray-900">
+          <span>Total Liability</span>
+          <span id="checkout-total">$0.00</span>
+        </div>
       </div>
-    </div>
+    </section>
 
   </main>
 
+  <script src="script.js"></script>
+  <script>
+    let rawSubtotalAmount = 0;
+
+    // Load Items Summary into Checkout Grid Canvas
+    function compileCheckoutLedger() {
+      const items = JSON.parse(localStorage.getItem("celosia_cart")) || [];
+      const ledgerBox = document.getElementById("checkout-item-ledger");
+      
+      if(items.length === 0) {
+        window.location.replace("cart.html");
+        return;
+      }
+
+      ledgerBox.innerHTML = items.map(item => {
+        const cost = parseFloat(item.price) * parseInt(item.quantity || 1);
+        rawSubtotalAmount += cost;
+        
+        return `
+          <div class="flex items-center justify-between text-xs font-medium border-b border-gray-50/50 pb-2 gap-4">
+            <div class="flex items-center space-x-3 truncate">
+              <div class="w-10 h-12 bg-gray-50 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0">
+                <img src="${item.image_url}" class="w-full h-full object-cover">
+              </div>
+              <div class="truncate">
+                <p class="font-bold text-gray-800 truncate">${item.name}</p>
+                <p class="text-[10px] text-gray-400 mt-0.5">Qty: ${item.quantity || 1}</p>
+              </div>
+            </div>
+            <span class="font-bold text-gray-900 flex-shrink-0">$${cost.toFixed(2)}</span>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById("checkout-subtotal").textContent = `$${rawSubtotalAmount.toFixed(2)}`;
+      document.getElementById("checkout-total").textContent = `$${rawSubtotalAmount.toFixed(2)}`;
+    }
+
+    // Process and Stream Order Data Node into Supabase Storage Grid
+    document.getElementById("checkout-dispatch-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById("checkout-action-btn");
+      submitBtn.textContent = "Registering Order Registry Vectors...";
+      submitBtn.disabled = true;
+
+      const userEmail = localStorage.getItem("celosia_user_email");
+      const cartItems = JSON.parse(localStorage.getItem("celosia_cart")) || [];
+
+      // Structure Payload Metadata Model
+      const orderPayload = {
+        user_email: userEmail,
+        customer_name: document.getElementById("ship-name").value,
+        phone: document.getElementById("ship-phone").value,
+        address: document.getElementById("ship-address").value,
+        city: document.getElementById("ship-city").value,
+        zip_code: document.getElementById("ship-zip").value,
+        country: document.getElementById("ship-country").value,
+        total_price: rawSubtotalAmount,
+        items_payload: JSON.stringify(cartItems),
+        order_status: "Processing" // Default tracking state node
+      };
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+          },
+          body: JSON.stringify(orderPayload)
+        });
+
+        if(!response.ok) {
+          const errMsg = await response.json();
+          throw new Error(errMsg.message || "Database Cluster Registry Refusal");
+        }
+
+        // Wipe Active Bag Post Successful Stream Registration
+        localStorage.removeItem("celosia_cart");
+        alert("✨ Allocation Complete! Order securely logged into the logistics telemetry tracking stack.");
+        window.location.replace("orders-tracker.html");
+
+      } catch(err) {
+        alert("⚠️ Order Registry Error: " + err.message);
+        submitBtn.textContent = "Authorize Order Registry";
+        submitBtn.disabled = false;
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", compileCheckoutLedger);
+  </script>
 </body>
-      </html>
-              
+              </html>
+      
