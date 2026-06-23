@@ -3,227 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client Suite | CELOSIA</title>
+  <title>Account Matrix | CELOSIA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .luxury-title { font-family: 'Cormorant Garamond', serif; }
+    
+    .fade-in-luxury {
+      animation: luxurySmoothView 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes luxurySmoothView {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
+  <script>
+    // Direct Security Route Guard
+    if(!localStorage.getItem("celosia_user_email")) { window.location.replace("index.html"); }
+  </script>
 </head>
-<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen">
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen pb-24 md:pb-0">
 
   <nav class="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 px-4 py-4 md:py-6">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="index.html" class="text-xl md:text-2xl font-bold tracking-widest luxury-title uppercase">CELOSIA</a>
-      <div class="hidden md:flex space-x-10 text-[11px] uppercase font-bold tracking-widest text-gray-500 items-center">
-        <a href="index.html" class="hover:text-black transition">Home</a>
-        <a href="products.html" class="hover:text-black transition">Collections</a>
-        <a id="admin-nav-link" href="admin.html" class="hidden text-amber-700 bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full hover:bg-amber-100 transition font-bold">⚙️ ADMIN CONTROL</a>
-      </div>
-      <div class="flex items-center space-x-6">
-        <button onclick="handleLogOut()" class="text-[11px] font-bold uppercase tracking-widest text-red-500 hover:text-red-700 border border-red-200 hover:border-red-400 px-4 py-2 rounded-full transition">Log Out 🚪</button>
-      </div>
+      <button onclick="window.location.href='index.html'" class="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-black flex items-center space-x-1">
+        <span>←</span> <span>Return to House</span>
+      </button>
+      <span class="text-xl font-bold tracking-widest luxury-title uppercase">ACCOUNT IDENTITY</span>
+      <div class="w-10"></div>
     </div>
   </nav>
 
-  <main class="max-w-7xl mx-auto px-4 md:px-8 py-12 flex-grow w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <main class="max-w-md mx-auto px-4 py-12 flex-grow w-full space-y-8 fade-in-luxury">
     
-    <div class="lg:col-span-4 space-y-6">
+    <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.02)] space-y-6 relative overflow-hidden">
+      <div class="absolute w-32 h-32 rounded-full bg-gray-50 -top-10 -right-10 blur-xl opacity-80"></div>
       
-      <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-5">
-        <div class="flex items-center space-x-4">
-          <div class="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center luxury-title text-2xl font-light uppercase shadow-inner" id="user-initial">
-            M
-          </div>
-          <div class="space-y-0.5">
-            <h2 class="text-sm font-bold text-gray-900 tracking-wide truncate max-w-[180px]" id="user-email-display">client@celosia.com</h2>
-            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 inline-block px-2.5 py-0.5 rounded-full" id="user-role-badge">Private Tier Member</p>
-          </div>
-        </div>
-        
-        <div class="border-t border-gray-100 pt-4 text-[11px] space-y-2 font-semibold text-gray-500">
-          <div class="flex justify-between"><span>Account ID:</span> <span class="text-black font-mono" id="client-id">CLS-99182</span></div>
-          <div class="flex justify-between"><span>Security Token:</span> <span class="text-green-600 uppercase tracking-wider text-[10px]">Verified SSL</span></div>
-        </div>
+      <div class="space-y-2 relative z-10">
+        <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 block">Authorized Identity Token</span>
+        <h3 id="profile-identity-display" class="text-lg font-bold text-gray-900 tracking-wide truncate">Loading parameters...</h3>
+        <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Access Node Clear: <span class="text-green-600 font-bold">Validated ✓</span></p>
       </div>
 
-      <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
-        <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-1 mb-3">Management Vault</h3>
-        
-        <button onclick="openTab('orders-section')" class="w-full text-left p-3 rounded-xl bg-gray-50 font-bold text-black flex justify-between items-center transition border border-transparent hover:border-gray-200" id="btn-orders">
-          <span>🛍️ Order History & Tracking</span>
-          <span class="text-gray-400">›</span>
-        </button>
-        
-        <button onclick="openTab('address-section')" class="w-full text-left p-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-50 flex justify-between items-center transition border border-transparent hover:border-gray-200" id="btn-address">
-          <span>📍 Live Shipping Address</span>
-          <span class="text-gray-400">›</span>
-        </button>
-        
-        <button onclick="openTab('security-section')" class="w-full text-left p-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-50 flex justify-between items-center transition border border-transparent hover:border-gray-200" id="btn-security">
-          <span>🔒 Vault Password Reset</span>
-          <span class="text-gray-400">›</span>
+      <div class="w-full h-[1px] bg-gray-50"></div>
+
+      <div class="space-y-3 text-xs font-semibold">
+        <a href="orders-tracker.html" class="flex justify-between items-center bg-gray-50 hover:bg-gray-100/70 p-4 rounded-xl transition group">
+          <span class="text-gray-600">Review Logistic Manifests</span>
+          <span class="text-gray-400 group-hover:text-black transition">📦 →</span>
+        </a>
+        <a href="cart.html" class="flex justify-between items-center bg-gray-50 hover:bg-gray-100/70 p-4 rounded-xl transition group">
+          <span class="text-gray-600">Inspect Active Allocation Bag</span>
+          <span class="text-gray-400 group-hover:text-black transition">🛒 →</span>
+        </a>
+        <button id="profile-admin-shortcut" onclick="window.location.href='admin.html'" class="hidden w-full text-left justify-between items-center bg-amber-50/50 hover:bg-amber-50 p-4 rounded-xl border border-amber-100/60 transition group text-amber-800">
+          <span>Launch Administrative Inventory Console</span>
+          <span class="text-amber-500">⚙️</span>
         </button>
       </div>
 
-    </div>
-
-    <div class="lg:col-span-8">
-      
-      <div id="orders-section" class="tab-content bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
-        <div class="border-b border-gray-100 pb-4">
-          <h3 class="text-lg font-medium luxury-title uppercase tracking-wider text-gray-900">Your Orders Portfolio</h3>
-          <p class="text-[11px] text-gray-400 font-medium mt-0.5">Real-time status of your premium architecture collection.</p>
-        </div>
-        <div id="amazon-order-list" class="space-y-4">
-          <p class="text-xs text-gray-400 animate-pulse font-medium">Securing connection to grid storage...</p>
-        </div>
+      <div class="pt-4">
+        <button onclick="triggerProfileGlobalLogout()" class="w-full bg-red-50 hover:bg-red-100/80 text-red-500 py-3.5 rounded-xl text-[10px] uppercase tracking-[0.2em] font-bold transition duration-300 shadow-sm border border-red-100/40">
+          Terminate Session Keys 🚪
+        </button>
       </div>
-
-      <div id="address-section" class="tab-content hidden bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
-        <div class="border-b border-gray-100 pb-4">
-          <h3 class="text-lg font-medium luxury-title uppercase tracking-wider text-gray-900">Shipping Coordinates</h3>
-          <p class="text-[11px] text-gray-400 font-medium mt-0.5">Manage premium courier routing locations.</p>
-        </div>
-        <form id="address-form" class="space-y-4" onclick="event.preventDefault();">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">Full Receiver Name</label>
-              <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border rounded-xl p-3 text-xs font-semibold focus:outline-none focus:border-black">
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">Contact Number</label>
-              <input type="tel" placeholder="+1 (555) 000-0000" class="w-full bg-gray-50 border rounded-xl p-3 text-xs font-semibold focus:outline-none focus:border-black">
-            </div>
-          </div>
-          <div>
-            <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">Street Address / Suite</label>
-            <input type="text" placeholder="Luxury Apartment, Park Avenue Suite 4B" class="w-full bg-gray-50 border rounded-xl p-3 text-xs font-semibold focus:outline-none focus:border-black">
-          </div>
-          <button onclick="alert('✨ Shipping settings synced securely in session repository.');" class="bg-black text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wider hover:bg-gray-800 transition">
-            Save Address Matrix
-          </button>
-        </form>
-      </div>
-
-      <div id="security-section" class="tab-content hidden bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
-        <div class="border-b border-gray-100 pb-4">
-          <h3 class="text-lg font-medium luxury-title uppercase tracking-wider text-gray-900">Vault Security Gateway</h3>
-          <p class="text-[11px] text-gray-400 font-medium mt-0.5">Request a dynamic cryptographic token reset to your inbox.</p>
-        </div>
-        <div class="space-y-4">
-          <p class="text-xs text-gray-500 leading-relaxed font-medium">
-            For advanced institutional security, clicking below will trigger a secure, system-signed password recovery connection straight to your registered email matrix.
-          </p>
-          <button id="reset-pwd-btn" class="bg-black text-white px-6 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition shadow-md">
-            Trigger Secure Recovery Link
-          </button>
-        </div>
-      </div>
-
     </div>
 
   </main>
 
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-100 h-20 px-6 flex items-center justify-between z-50 shadow-2xl rounded-t-2xl">
+    <a href="index.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">🏠</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Home</span>
+    </a>
+    <a href="products.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">🔍</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Search</span>
+    </a>
+    <a href="cart.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">🛒</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Cart</span>
+    </a>
+    <a href="orders-tracker.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">📦</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Orders</span>
+    </a>
+    <a href="profile.html" class="flex flex-col items-center justify-center text-black">
+      <span class="text-lg">👤</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Profile</span>
+    </a>
+  </div>
+
   <script src="script.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const session = localStorage.getItem("celosia_session");
-      const savedEmail = localStorage.getItem("celosia_user_email");
-      const userRole = localStorage.getItem("celosia_user_role");
+    // Hydrate Client Identity Parameters from Session Data Cache
+    function renderProfileMatrixParameters() {
+      const targetDisplay = document.getElementById("profile-identity-display");
+      const sessionUserEmail = localStorage.getItem("celosia_user_email");
+      const sessionUserRole = localStorage.getItem("celosia_user_role");
 
-      if (!session || !savedEmail) {
-        alert("🔒 Session Expired. Re-authenticating gateway...");
-        window.location.href = "login.html";
-        return;
-      }
-
-      // Display data dynamic values cleanly
-      document.getElementById("user-email-display").textContent = savedEmail;
-      document.getElementById("user-initial").textContent = savedEmail.charAt(0).toUpperCase();
-      
-      // Multiplier math logic for custom premium ID display
-      document.getElementById("client-id").textContent = `CLS-2026-${savedEmail.length * 43}`;
-
-      // Show/Hide Premium Administrator control panel
-      if (userRole === "admin") {
-        document.getElementById("admin-nav-link").classList.remove("hidden");
-        document.getElementById("user-role-badge").textContent = "Platform Director";
-        document.getElementById("user-role-badge").classList.replace("text-gray-400", "text-amber-700");
-        document.getElementById("user-role-badge").classList.replace("bg-gray-50", "bg-amber-50");
-      }
-
-      // Run real order database rendering if available
-      if (typeof renderProfileDashboard === "function") {
-        renderProfileDashboard();
-      }
-    });
-
-    // Real Interactive Tab Switcher Engine
-    function openTab(tabId) {
-      // Hide all content areas
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      // Show selected one
-      document.getElementById(tabId).classList.remove('hidden');
-
-      // Style resetting for side layout panel buttons
-      const buttons = ['btn-orders', 'btn-address', 'btn-security'];
-      buttons.forEach(id => {
-        const el = document.getElementById(id);
-        el.classList.remove('bg-gray-50', 'text-black', 'font-bold');
-        el.classList.add('text-gray-600', 'font-semibold');
-      });
-
-      // Active state styling injection
-      const activeBtnId = tabId === 'orders-section' ? 'btn-orders' : tabId === 'address-section' ? 'btn-address' : 'btn-security';
-      const actEl = document.getElementById(activeBtnId);
-      actEl.classList.add('bg-gray-50', 'text-black', 'font-bold');
-    }
-
-    // Dynamic Supabase Password Recovery Integrator
-    document.getElementById("reset-pwd-btn").addEventListener("click", async () => {
-      const email = localStorage.getItem("celosia_user_email");
-      const btn = document.getElementById("reset-pwd-btn");
-      btn.textContent = "Deploying Cryptographic Link...";
-      btn.disabled = true;
-
-      try {
-        const response = await fetch(`${SUPABASE_URL}/auth/v1/recover`, {
-          method: "POST",
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ email })
-        });
-
-        if (response.ok) {
-          alert("📨 Vault link transmission successful! Please check your secure email inbox.");
-        } else {
-          alert("✨ Request accepted into system pipeline. Secure gateway mail is operating.");
+      if(sessionUserEmail) {
+        targetDisplay.textContent = sessionUserEmail;
+        
+        // Expose admin control access nodes if condition metrics pass
+        if(sessionUserEmail.includes("admin") || sessionUserRole === "admin") {
+          const adminNodeShortcut = document.getElementById("profile-admin-shortcut");
+          if(adminNodeShortcut) {
+            adminNodeShortcut.classList.remove("hidden");
+            adminNodeShortcut.classList.add("flex");
+          }
         }
-      } catch (err) {
-        alert("System processing completed.");
-      } finally {
-        btn.textContent = "Trigger Secure Recovery Link";
-        btn.disabled = false;
+      } else {
+        window.location.replace("index.html");
       }
-    });
-
-    // Clean Logout System
-    function handleLogOut() {
-      localStorage.removeItem("celosia_session");
-      localStorage.removeItem("celosia_user_email");
-      localStorage.removeItem("celosia_user_role");
-      alert("Private security profile unmounted.");
-      window.location.href = "login.html";
     }
+
+    // Flush and reset token matrices completely from framework layers
+    function triggerProfileGlobalLogout() {
+      localStorage.clear();
+      window.location.replace("index.html");
+    }
+
+    window.addEventListener("DOMContentLoaded", renderProfileMatrixParameters);
   </script>
 </body>
-            </html>
-            
+  </html>
+                                                                                                         
