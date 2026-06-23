@@ -3,119 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Collections | CELOSIA</title>
+  <title>Collections Portfolio | CELOSIA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .luxury-title { font-family: 'Cormorant Garamond', serif; }
+    
+    .fade-in-luxury {
+      animation: luxurySmoothView 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes luxurySmoothView {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <script>
+    // Direct Security Route Guard
+    if(!localStorage.getItem("celosia_user_email")) { window.location.replace("index.html"); }
+  </script>
 </head>
-<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased">
+<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen pb-24 md:pb-0">
 
-  <div class="bg-black text-white text-[10px] md:text-xs py-2.5 text-center tracking-widest uppercase font-medium">
-    FREE SHIPPING ON ORDERS OVER $75 | EASY RETURNS
-  </div>
-
-  <nav class="border-b border-gray-200 bg-white sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
-      <a href="index.html" class="text-xl md:text-2xl font-bold tracking-widest font-serif">CELOSIA</a>
-      <div class="hidden md:flex space-x-8 text-xs uppercase font-semibold tracking-wider text-gray-600">
-        <a href="index.html" class="hover:text-black transition">Home</a>
-        <a href="products.html" class="text-black font-bold">Collections</a>
-        <a href="about.html" class="hover:text-black transition">Our Story</a>
-        <a href="admin.html" class="hover:text-black transition">⚙️ Admin</a>
-      </div>
-      <div class="flex items-center space-x-6">
-        <a href="index.html" class="text-xs font-semibold tracking-wider text-gray-500 hover:text-black">← Back Home</a>
-        <a href="cart.html" class="text-xl relative">🛍️ <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span></a>
-      </div>
+  <nav class="border-b border-gray-100 bg-white sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <button onclick="window.location.href='index.html'" class="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-black flex items-center space-x-1">
+        <span>←</span> <span>Home</span>
+      </button>
+      <input type="text" id="live-search-input" placeholder="Type design nomenclature to search store matrix..." class="w-full max-w-md bg-gray-50 border border-gray-100 rounded-full px-5 py-2.5 text-xs font-medium focus:outline-none focus:border-black transition-all">
+      <div class="w-10"></div>
     </div>
   </nav>
 
-  <header class="bg-[#F3F3F2] py-12 text-center border-b border-gray-200">
-    <h1 class="text-3xl md:text-5xl font-serif font-light tracking-wide uppercase">Our Collection</h1>
-    <p class="text-xs text-gray-500 mt-2 tracking-widest uppercase">Live Premium Inventory From Database</p>
-  </header>
+  <main class="max-w-7xl mx-auto px-4 md:px-8 py-8 flex-grow w-full space-y-6 fade-in-luxury">
+    <div class="flex justify-between items-baseline border-b border-gray-50 pb-2">
+      <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Database Search Indices</h2>
+      <span id="results-metric" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Evaluating assets...</span>
+    </div>
 
-  <main class="max-w-7xl mx-auto px-4 md:px-8 py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
-    
-    <aside class="hidden lg:block space-y-6">
-      <div>
-        <h4 class="text-xs font-bold uppercase tracking-wider mb-3">Categories</h4>
-        <div class="space-y-2 text-xs text-gray-600 font-medium">
-          <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" checked class="accent-black"> <span>All Products</span></label>
-        </div>
-      </div>
-    </aside>
-
-    <div id="dynamic-product-grid" class="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-      <div class="col-span-full text-center py-12 text-gray-400 text-xs tracking-widest uppercase animate-pulse">
-        Connecting to premium live database...
-      </div>
+    <div id="catalog-matrix-grid" class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+      <p class="text-xs text-gray-400 animate-pulse col-span-full">Querying structural index parameters...</p>
     </div>
   </main>
 
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-100 h-20 px-6 flex items-center justify-between z-50 shadow-2xl rounded-t-2xl">
+    <a href="index.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">🏠</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Home</span>
+    </a>
+    <a href="products.html" class="flex flex-col items-center justify-center text-black">
+      <span class="text-lg">🔍</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Search</span>
+    </a>
+    <a href="cart.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">🛒</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Cart</span>
+    </a>
+    <a href="orders-tracker.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">📦</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Orders</span>
+    </a>
+    <a href="profile.html" class="flex flex-col items-center justify-center text-gray-400">
+      <span class="text-lg">👤</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Profile</span>
+    </a>
+  </div>
+
   <script src="script.js"></script>
   <script>
-    // Function to render products beautifully on screen
-    function displayLiveProducts(productsList) {
-      const gridContainer = document.getElementById("dynamic-product-grid");
-      if (!gridContainer) return;
+    let activeDatabaseStore = [];
 
-      if (!productsList || productsList.length === 0) {
-        gridContainer.innerHTML = `
-          <div class="col-span-full text-center py-12 text-gray-500 text-xs tracking-wider">
-            No products found in the database. Go to Supabase or Admin Panel to add items!
-          </div>`;
+    // Core Data Sync Layer from Supabase Cluster Node
+    async function mountSearchEngineData() {
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*`, {
+          method: "GET",
+          headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+        });
+        if (!response.ok) return;
+        activeDatabaseStore = await response.json();
+        renderActiveGridItems(activeDatabaseStore);
+      } catch(err) {
+        console.log("Search infrastructure database link error:", err);
+      }
+    }
+
+    // Dynamic High-End Card Rendering Grid
+    function renderActiveGridItems(itemsList) {
+      const canvasGrid = document.getElementById("catalog-matrix-grid");
+      document.getElementById("results-metric").textContent = `${itemsList.length} Models Mapped`;
+      
+      if(itemsList.length === 0) {
+        canvasGrid.innerHTML = `<p class="text-xs text-gray-400 font-medium p-4 col-span-full">No matching structural configurations available.</p>`;
         return;
       }
-
-      let dynamicHTML = "";
-      productsList.forEach(product => {
-        dynamicHTML += `
-          <div class="group flex flex-col bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
-            <div class="bg-[#F3F3F2] rounded-lg overflow-hidden relative aspect-[3/4]">
-              <img src="${product.img || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400'}" 
-                   alt="${product.name}" 
-                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-              <span class="absolute top-3 left-3 bg-black text-white text-[8px] font-bold tracking-widest px-2 py-1 uppercase shadow-sm">
-                ${product.category || 'New Season'}
-              </span>
-            </div>
-            <div class="mt-3 flex flex-col flex-grow px-1 pb-1">
-              <h3 class="text-xs font-semibold text-gray-800 line-clamp-1">${product.name}</h3>
-              <p class="text-xs font-bold text-gray-900 mt-1">$${Number(product.price).toFixed(2)}</p>
-              <button onclick="addToCartDirect(${product.id})" class="mt-3 bg-black text-white text-[10px] font-bold uppercase py-2 tracking-wider rounded shadow hover:bg-gray-800 transition">
-                Add To Cart
+      
+      canvasGrid.innerHTML = itemsList.map((p, idx) => `
+        <div class="group flex flex-col relative fade-in-luxury">
+          <div class="bg-[#F3F3F2] rounded-2xl overflow-hidden aspect-[3/4] border border-gray-100 relative group">
+            <img src="${p.image_url}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400'">
+            
+            <div class="absolute bottom-3 left-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button onclick="pipeToCart(${idx})" class="flex-grow bg-black text-white text-[9px] uppercase font-bold tracking-widest py-2.5 rounded-xl shadow-lg transition hover:bg-gray-800">
+                + Add Bag
+              </button>
+              <button onclick="pipeToWishlist(${idx})" class="bg-white text-black border border-gray-100 w-9 h-9 flex items-center justify-center rounded-xl shadow-lg transition hover:bg-gray-50 text-xs">
+                🤍
               </button>
             </div>
           </div>
-        `;
-      });
-      gridContainer.innerHTML = dynamicHTML;
+          <h4 class="text-xs font-bold mt-3 text-gray-800 truncate">${p.name}</h4>
+          <span class="text-xs font-bold text-gray-400 mt-0.5">$${parseFloat(p.price).toFixed(2)}</span>
+        </div>
+      `).join('');
     }
 
-    // Helper Cart Function for immediate feedback
-    function addToCartDirect(productId) {
-      let cart = JSON.parse(localStorage.getItem("celosia_cart")) || [];
-      cart.push(productId);
-      localStorage.setItem("celosia_cart", JSON.stringify(cart));
-      if (typeof updateCartCount === "function") {
-        updateCartCount();
-      }
-      alert("✨ Added to your premium collection cart!");
-    }
+    // State Processing Pipeline (Cart Insertion Loop)
+    window.pipeToCart = function(arrayIndex) {
+      const targetedProduct = activeDatabaseStore[arrayIndex];
+      if(!targetedProduct) return;
 
-    // Wait for script.js to load data, then update UI instantly
-    document.addEventListener("DOMContentLoaded", () => {
-      // If products are already fetched by script.js
-      if (typeof PRODUCTS !== 'undefined' && PRODUCTS.length > 0) {
-        displayLiveProducts(PRODUCTS);
+      let localCart = JSON.parse(localStorage.getItem("celosia_cart")) || [];
+      const matchIndex = localCart.findIndex(item => item.id === targetedProduct.id);
+
+      if(matchIndex > -1) {
+        localCart[matchIndex].quantity = (localCart[matchIndex].quantity || 1) + 1;
+      } else {
+        localCart.push({ ...targetedProduct, quantity: 1 });
       }
-      
-      // Listen to the live sync event from script.js
-      document.addEventListener("productsLoaded", (e) => {
-        displayLiveProducts(e.detail);
-      });
+
+      localStorage.setItem("celosia_cart", JSON.stringify(localCart));
+      alert(`✨ "${targetedProduct.name}" has been safely allocated to your active bag ledger.`);
+    };
+
+    // State Processing Pipeline (Wishlist Curation Loop)
+    window.pipeToWishlist = function(arrayIndex) {
+      const targetedProduct = activeDatabaseStore[arrayIndex];
+      if(!targetedProduct) return;
+
+      let localWishlist = JSON.parse(localStorage.getItem("celosia_wishlist")) || [];
+      const isExist = localWishlist.some(item => item.id === targetedProduct.id);
+
+      if(!isExist) {
+        localWishlist.push(targetedProduct);
+        localStorage.setItem("celosia_wishlist", JSON.stringify(localWishlist));
+        alert(`🤍 "${targetedProduct.name}" appended to your style curation board.`);
+      } else {
+        alert("🔒 Asset already logged inside your styling database board.");
+      }
+    };
+
+    // Dynamic Stream Filtering
+    document.getElementById("live-search-input").addEventListener("input", (e) => {
+      const queryStr = e.target.value.toLowerCase().trim();
+      const executionMatches = activeDatabaseStore.filter(productItem => productItem.name.toLowerCase().includes(queryStr));
+      renderActiveGridItems(executionMatches);
     });
+
+    window.addEventListener("DOMContentLoaded", mountSearchEngineData);
   </script>
 </body>
-  </html>
+        </html>
   
