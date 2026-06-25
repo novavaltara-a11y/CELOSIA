@@ -3,129 +3,242 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Matrix | CELOSIA</title>
+  <title>Account Control Center | C-STYLE</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .luxury-title { font-family: 'Cormorant Garamond', serif; }
-    
-    .fade-in-luxury {
-      animation: luxurySmoothView 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    body { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.01em; }
+    /* Premium Smooth Entry Animation */
+    .fade-in-up {
+      animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes luxurySmoothView {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
-  <script>
-    // Direct Security Route Guard
-    if(!localStorage.getItem("celosia_user_email")) { window.location.replace("index.html"); }
-  </script>
 </head>
-<body class="bg-[#FBFBFA] text-[#1A1A1A] antialiased flex flex-col min-h-screen pb-24 md:pb-0">
+<body class="bg-[#FAFAFA] text-[#111111] antialiased min-h-screen flex flex-col pb-20 md:pb-0">
 
-  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 px-4 py-4 md:py-6">
+  <header class="bg-white border-b border-gray-100 px-4 md:px-8 py-4 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <button onclick="window.location.href='index.html'" class="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-black flex items-center space-x-1">
-        <span>←</span> <span>Return to House</span>
-      </button>
-      <span class="text-xl font-bold tracking-widest luxury-title uppercase">ACCOUNT IDENTITY</span>
-      <div class="w-10"></div>
+      <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-black flex items-center space-x-1 transition">
+        <span>&larr;</span> <span>Back to Store</span>
+      </a>
+      <span class="text-xs font-bold tracking-[0.25em] uppercase text-black">C-STYLE CENTRAL HUB</span>
+      <div class="flex items-center space-x-4 text-gray-700 text-sm">
+        <a href="cart.html" class="relative hover:text-black transition">
+          🛒<span class="global-cart-count absolute -top-1.5 -right-1.5 bg-black text-white text-[7px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+        </a>
+      </div>
     </div>
-  </nav>
+  </header>
 
-  <main class="max-w-md mx-auto px-4 py-12 flex-grow w-full space-y-8 fade-in-luxury">
+  <main class="flex-grow w-full max-w-4xl mx-auto p-4 md:py-12 flex items-center justify-center">
     
-    <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.02)] space-y-6 relative overflow-hidden">
-      <div class="absolute w-32 h-32 rounded-full bg-gray-50 -top-10 -right-10 blur-xl opacity-80"></div>
+    <div id="auth-gate-wrapper" class="hidden w-full max-w-md bg-white border border-gray-100 rounded-[28px] p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] space-y-6 fade-in-up">
+      <div class="text-center space-y-2">
+        <div class="w-10 h-10 rounded-full border border-black flex items-center justify-center mx-auto mb-2">
+          <span class="text-xs font-bold tracking-tighter">C</span>
+        </div>
+        <h3 id="auth-title" class="text-sm font-bold tracking-[0.25em] uppercase text-black">SECURE SIGN IN</h3>
+        <p class="text-[11px] text-gray-400 font-medium leading-relaxed">Enter your details below to access order tracking, private vaults, and addresses.</p>
+      </div>
+
+      <form id="profile-gate-form" class="space-y-4 text-xs font-semibold">
+        <div>
+          <label class="block text-gray-400 uppercase text-[9px] tracking-widest mb-1">Email Address</label>
+          <input type="email" id="gate-email" required placeholder="example@cstyle.com" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
+        </div>
+        <div>
+          <label class="block text-gray-400 uppercase text-[9px] tracking-widest mb-1">Vault Password</label>
+          <input type="password" id="gate-password" required placeholder="••••••••" class="w-full bg-gray-50 border border-gray-100 rounded-xl p-3.5 focus:outline-none focus:border-black font-medium transition-all">
+        </div>
+        <button type="submit" id="gate-submit-btn" class="w-full bg-black text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:bg-gray-900 transition duration-300">
+          Verify Credentials
+        </button>
+      </form>
+
+      <div class="text-center text-[11px] font-semibold text-gray-400 border-t border-gray-50 pt-4">
+        <span id="gate-toggle-txt">New to C-Style platform?</span>
+        <a href="#" id="gate-toggle-btn" class="text-black font-bold underline ml-1 hover:text-gray-600 transition">Create Account</a>
+      </div>
+    </div>
+
+    <div id="profile-dashboard-wrapper" class="hidden w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start fade-in-up">
       
-      <div class="space-y-2 relative z-10">
-        <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 block">Authorized Identity Token</span>
-        <h3 id="profile-identity-display" class="text-lg font-bold text-gray-900 tracking-wide truncate">Loading parameters...</h3>
-        <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Access Node Clear: <span class="text-green-600 font-bold">Validated ✓</span></p>
+      <div class="lg:col-span-4 bg-white border border-gray-100 rounded-3xl p-6 text-center space-y-4 shadow-sm">
+        <div class="w-14 h-14 bg-black text-white text-base font-bold flex items-center justify-center rounded-full mx-auto uppercase shadow-sm" id="avatar-fallback">U</div>
+        <div class="space-y-1">
+          <h4 id="user-email-display" class="text-xs font-bold text-gray-900 truncate">loading...</h4>
+          <span class="text-[9px] text-green-600 font-bold uppercase tracking-widest bg-green-50 px-2.5 py-1 rounded-full border border-green-100">Verified Identity Node</span>
+        </div>
+        <div class="pt-2">
+          <button onclick="flushActiveSessionTokens()" class="w-full bg-red-50 text-red-500 border border-red-100/60 py-3 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-red-100 transition duration-300">
+            Sign Out Securely 🚪
+          </button>
+        </div>
       </div>
 
-      <div class="w-full h-[1px] bg-gray-50"></div>
+      <div class="lg:col-span-8 space-y-6">
+        
+        <div id="admin-privilege-strip" class="hidden bg-amber-50/80 border border-amber-200/60 rounded-2xl p-4 flex items-center justify-between text-amber-900 shadow-sm animate-pulse">
+          <div class="space-y-0.5">
+            <span class="text-xs font-bold block uppercase tracking-wider">🔒 Administrative Clearance Detected</span>
+            <span class="text-[10px] font-medium text-amber-700">You have developer access to alter the master inventory repository tables.</span>
+          </div>
+          <a href="admin.html" class="bg-amber-800 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-xl hover:bg-amber-900 transition shadow">Launch Panel</a>
+        </div>
 
-      <div class="space-y-3 text-xs font-semibold">
-        <a href="orders-tracker.html" class="flex justify-between items-center bg-gray-50 hover:bg-gray-100/70 p-4 rounded-xl transition group">
-          <span class="text-gray-600">Review Logistic Manifests</span>
-          <span class="text-gray-400 group-hover:text-black transition">📦 →</span>
-        </a>
-        <a href="cart.html" class="flex justify-between items-center bg-gray-50 hover:bg-gray-100/70 p-4 rounded-xl transition group">
-          <span class="text-gray-600">Inspect Active Allocation Bag</span>
-          <span class="text-gray-400 group-hover:text-black transition">🛒 →</span>
-        </a>
-        <button id="profile-admin-shortcut" onclick="window.location.href='admin.html'" class="hidden w-full text-left justify-between items-center bg-amber-50/50 hover:bg-amber-50 p-4 rounded-xl border border-amber-100/60 transition group text-amber-800">
-          <span>Launch Administrative Inventory Console</span>
-          <span class="text-amber-500">⚙️</span>
-        </button>
+        <div class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm space-y-6">
+          <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50 pb-2">Account Dashboard Matrix</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            
+            <a href="orders-tracker.html" class="border border-gray-100 hover:border-black bg-gray-50/40 p-4 rounded-2xl transition flex items-center gap-3 group">
+              <span class="text-xl">📦</span>
+              <div>
+                <span class="text-xs font-bold text-gray-900 block group-hover:underline">My Orders & Tracker</span>
+                <span class="text-[10px] text-gray-400 font-medium">Track your shipping logs and active delivery coordinates.</span>
+              </div>
+            </a>
+
+            <div onclick="window.showPremiumToast('Address Layer Secure', 'Your delivery addresses map automatically at checkout stage workflows.', 'info')" class="border border-gray-100 hover:border-black bg-gray-50/40 p-4 rounded-2xl transition flex items-center gap-3 group cursor-pointer">
+              <span class="text-xl">📍</span>
+              <div>
+                <span class="text-xs font-bold text-gray-900 block group-hover:underline">Manage Addresses</span>
+                <span class="text-[10px] text-gray-400 font-medium">Configure primary routing nodes for quick order execution.</span>
+              </div>
+            </div>
+
+            <div onclick="window.showPremiumToast('Vault Protected', 'All saved card structures are dynamically encrypted locally.', 'success')" class="border border-gray-100 hover:border-black bg-gray-50/40 p-4 rounded-2xl transition flex items-center gap-3 group cursor-pointer">
+              <span class="text-xl">💳</span>
+              <div>
+                <span class="text-xs font-bold text-gray-900 block group-hover:underline">Payment Methods Vault</span>
+                <span class="text-[10px] text-gray-400 font-medium">Review credentials, active UPI profiles, or credit wallets.</span>
+              </div>
+            </div>
+
+            <div onclick="window.showPremiumToast('Notifications Synced', 'Real-time notification parameters active.', 'success')" class="border border-gray-100 hover:border-black bg-gray-50/40 p-4 rounded-2xl transition flex items-center gap-3 group cursor-pointer">
+              <span class="text-xl">🔔</span>
+              <div>
+                <span class="text-xs font-bold text-gray-900 block group-hover:underline">Alert Preferences</span>
+                <span class="text-[10px] text-gray-400 font-medium">Manage instant text alerts, status flags, and promo tracking.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
-      <div class="pt-4">
-        <button onclick="triggerProfileGlobalLogout()" class="w-full bg-red-50 hover:bg-red-100/80 text-red-500 py-3.5 rounded-xl text-[10px] uppercase tracking-[0.2em] font-bold transition duration-300 shadow-sm border border-red-100/40">
-          Terminate Session Keys 🚪
-        </button>
-      </div>
     </div>
 
   </main>
 
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-100 h-20 px-6 flex items-center justify-between z-50 shadow-2xl rounded-t-2xl">
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 h-20 px-6 flex items-center justify-between z-50 rounded-t-3xl shadow-2xl">
     <a href="index.html" class="flex flex-col items-center justify-center text-gray-400">
-      <span class="text-lg">🏠</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Home</span>
+      <span class="text-xl">🏠</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Home</span>
     </a>
     <a href="products.html" class="flex flex-col items-center justify-center text-gray-400">
-      <span class="text-lg">🔍</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Search</span>
+      <span class="text-xl">🔍</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Search</span>
     </a>
-    <a href="cart.html" class="flex flex-col items-center justify-center text-gray-400">
-      <span class="text-lg">🛒</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Cart</span>
-    </a>
-    <a href="orders-tracker.html" class="flex flex-col items-center justify-center text-gray-400">
-      <span class="text-lg">📦</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Orders</span>
+    <a href="cart.html" class="flex flex-col items-center justify-center text-gray-400 relative">
+      <span class="text-xl">🛒</span><span class="global-cart-count absolute top-0 right-1 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+      <span class="text-[9px] font-bold tracking-widest uppercase mt-1">Cart</span>
     </a>
     <a href="profile.html" class="flex flex-col items-center justify-center text-black">
-      <span class="text-lg">👤</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Profile</span>
+      <span class="text-xl">👤</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Profile</span>
     </a>
   </div>
 
   <script src="script.js"></script>
   <script>
-    // Hydrate Client Identity Parameters from Session Data Cache
-    function renderProfileMatrixParameters() {
-      const targetDisplay = document.getElementById("profile-identity-display");
-      const sessionUserEmail = localStorage.getItem("celosia_user_email");
-      const sessionUserRole = localStorage.getItem("celosia_user_role");
+    let isRegisterMode = false;
 
-      if(sessionUserEmail) {
-        targetDisplay.textContent = sessionUserEmail;
+    function evaluateSessionStateGrid() {
+      const activeUser = localStorage.getItem("celosia_user_email");
+      const userRole = localStorage.getItem("celosia_user_role");
+      
+      const authSection = document.getElementById("auth-gate-wrapper");
+      const dashboardSection = document.getElementById("profile-dashboard-wrapper");
+
+      if (activeUser) {
+        authSection.classList.add("hidden");
+        dashboardSection.classList.remove("hidden");
+        dashboardSection.classList.add("grid");
         
-        // Expose admin control access nodes if condition metrics pass
-        if(sessionUserEmail.includes("admin") || sessionUserRole === "admin") {
-          const adminNodeShortcut = document.getElementById("profile-admin-shortcut");
-          if(adminNodeShortcut) {
-            adminNodeShortcut.classList.remove("hidden");
-            adminNodeShortcut.classList.add("flex");
-          }
+        document.getElementById("user-email-display").textContent = activeUser;
+        document.getElementById("avatar-fallback").textContent = activeUser.charAt(0).toUpperCase();
+
+        // Admin auto-detector
+        if (activeUser.includes("admin") || userRole === "admin") {
+          document.getElementById("admin-privilege-strip").classList.remove("hidden");
         }
       } else {
-        window.location.replace("index.html");
+        dashboardSection.classList.remove("grid");
+        dashboardSection.classList.add("hidden");
+        authSection.classList.remove("hidden");
       }
+      if(window.syncGlobalHeaderCounters) window.syncGlobalHeaderCounters();
     }
 
-    // Flush and reset token matrices completely from framework layers
-    function triggerProfileGlobalLogout() {
+    document.getElementById("gate-toggle-btn").addEventListener("click", (e) => {
+      e.preventDefault();
+      isRegisterMode = !isRegisterMode;
+      document.getElementById("auth-title").textContent = isRegisterMode ? "CREATE COORDINATE ACCESS" : "SECURE SIGN IN";
+      document.getElementById("gate-submit-btn").textContent = isRegisterMode ? "Register Account" : "Verify Credentials";
+      document.getElementById("gate-toggle-txt").textContent = isRegisterMode ? "Possess valid access keys?" : "New to C-Style platform?";
+      document.getElementById("gate-toggle-btn").textContent = isRegisterMode ? "Sign In Here" : "Create Account";
+    });
+
+    document.getElementById("profile-gate-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("gate-email").value;
+      const password = document.getElementById("gate-password").value;
+      const targetEndpoint = isRegisterMode ? "signup" : "token?grant_type=password";
+
+      document.getElementById("gate-submit-btn").textContent = "Syncing with Cloud Vault...";
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/auth/v1/${targetEndpoint}`, {
+          method: "POST",
+          headers: { "apikey": SUPABASE_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error_description || data.msg || "Authentication Pipeline Exception");
+
+        if (isRegisterMode) {
+          isRegisterMode = false;
+          document.getElementById("gate-toggle-btn").click();
+          window.showPremiumToast("Account Formed", "Access keys created! Proceed to Sign In to log your dashboard module.", "success");
+        } else {
+          localStorage.setItem("celosia_session", JSON.stringify(data));
+          localStorage.setItem("celosia_user_email", email);
+          if (email.includes("admin")) localStorage.setItem("celosia_user_role", "admin");
+          evaluateSessionStateGrid();
+          window.showPremiumToast("Access Granted", "Welcome to your high-end profile console workflow.", "success");
+        }
+      } catch (err) {
+        window.showPremiumToast("Access Denied", err.message, "error");
+      } finally {
+        document.getElementById("gate-submit-btn").textContent = isRegisterMode ? "Register Account" : "Verify Credentials";
+      }
+    });
+
+    window.flushActiveSessionTokens = function() {
       localStorage.clear();
-      window.location.replace("index.html");
-    }
+      evaluateSessionStateGrid();
+      window.showPremiumToast("Logged Out", "Session cache cleared completely. Database link secure.", "info");
+    };
 
-    window.addEventListener("DOMContentLoaded", renderProfileMatrixParameters);
+    window.addEventListener("DOMContentLoaded", () => {
+      evaluateSessionStateGrid();
+    });
   </script>
 </body>
-  </html>
-                                                                                                         
+    </html>
+  
