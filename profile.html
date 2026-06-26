@@ -13,132 +13,112 @@
 
   <header id="cstyle-global-desktop-header" class="bg-white dark:bg-zinc-900 border-b border-gray-100 dark:border-zinc-800 px-4 md:px-8 py-4 sticky top-0 z-50"></header>
 
-  <main class="flex-grow w-full max-w-5xl mx-auto p-4 md:py-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+  <main class="flex-grow w-full max-w-4xl mx-auto p-4 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
     
-    <section class="lg:col-span-4 bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-3xl p-6 text-center space-y-6 shadow-sm">
-      <div id="avatar-circle-fallback" class="w-14 h-14 bg-black dark:bg-white text-white dark:text-black font-bold text-sm flex items-center justify-center rounded-full mx-auto uppercase">U</div>
+    <section class="md:col-span-5 bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-3xl p-6 text-center space-y-6 shadow-sm">
+      <div id="user-profile-circle-node" class="w-16 h-16 bg-black dark:bg-white text-white dark:text-black font-extrabold text-lg flex items-center justify-center rounded-full mx-auto uppercase">U</div>
       
       <div class="space-y-1">
-        <h3 id="profile-node-fullname" class="text-xs font-bold uppercase tracking-wider text-black dark:text-white">Loading...</h3>
-        <p id="profile-node-email" class="text-[10px] text-gray-400 font-medium truncate">Syncing secure email matrix...</p>
+        <h3 id="profile-display-name" class="text-xs font-bold uppercase tracking-wider text-black dark:text-white">Active Profile</h3>
+        <p id="profile-display-email" class="text-[10px] text-gray-400 font-medium truncate">syncing registry array...</p>
       </div>
 
-      <form id="meesho-identity-mutation-form" class="text-left border-t border-gray-50 dark:border-zinc-800 pt-4 space-y-3 text-[9px] font-bold text-gray-400 tracking-widest uppercase">
+      <form id="meesho-account-mutation-grid" class="text-left border-t border-gray-50 dark:border-zinc-800 pt-4 space-y-3 text-[9px] font-bold text-gray-400 tracking-widest uppercase">
         <div>
           <label class="block mb-1">Edit Account Username</label>
-          <input type="text" id="input-mutation-name" class="w-full bg-gray-50 dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 text-black dark:text-white p-3 rounded-xl text-xs font-medium focus:outline-none">
+          <input type="text" id="edit-field-name-string" class="w-full bg-gray-50 dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 text-black dark:text-white p-3.5 rounded-xl text-xs font-medium focus:outline-none">
         </div>
-        <button type="submit" class="w-full bg-black dark:bg-white text-white dark:text-black py-3 rounded-xl text-[9px] font-bold uppercase tracking-widest transition">
-          Commit Meta Updates
+        <button type="submit" class="w-full bg-black dark:bg-white text-white dark:text-black py-3.5 rounded-xl text-[9px] font-bold uppercase tracking-widest transition">
+          Commit Profile Changes
         </button>
       </form>
 
       <div class="pt-2 border-t border-gray-50 dark:border-zinc-800">
-        <button onclick="localStorage.clear(); window.location.href='login.html';" class="w-full bg-red-50 dark:bg-red-950/20 text-red-500 border border-red-100/30 dark:border-red-900/40 py-3 rounded-xl text-[9px] font-bold uppercase tracking-widest transition">
-          Clear Session Logs 🚪
+        <button onclick="localStorage.removeItem('celosia_user_email'); localStorage.removeItem('celosia_user_role'); window.location.href='login.html';" class="w-full bg-red-50 dark:bg-red-950/20 text-red-500 border border-red-100/30 dark:border-red-900/40 py-3 rounded-xl text-[9px] font-bold uppercase tracking-widest transition">
+          Terminate Secure Session Logs 
         </button>
       </div>
     </section>
 
-    <section class="lg:col-span-8 space-y-6">
+    <section class="md:col-span-7 space-y-4">
       
-      <div id="admin-privilege-strip" class="hidden bg-amber-50/80 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-900/40 rounded-2xl p-4 flex items-center justify-between text-amber-900 dark:text-amber-300 shadow-sm">
+      <div id="admin-gatekeeper-strip-row" class="hidden bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/40 rounded-2xl p-4 flex items-center justify-between text-amber-900 dark:text-amber-300 shadow-sm">
         <div class="space-y-0.5">
-          <span class="text-xs font-bold block uppercase tracking-wider">🔒 Administrative clearance verified</span>
-          <span class="text-[10px] font-medium text-amber-700 dark:text-amber-400">Dynamic inventory read/write tables access granted.</span>
+          <span class="text-xs font-bold block uppercase tracking-wider">🔒 Root Privilege Node Active</span>
+          <span class="text-[10px] font-medium opacity-80">Catalog engine rows modification layer unlocked.</span>
         </div>
-        <a href="admin.html" class="bg-amber-800 text-white text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-xl shadow-sm hover:bg-amber-900 transition">Open Admin Panel</a>
+        <a href="admin.html" class="bg-amber-800 text-white text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-xl">Open Panel</a>
       </div>
 
       <div class="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-3xl p-6 shadow-sm space-y-6">
-        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50 dark:border-zinc-800 pb-2">Advanced Profile Matrices</h4>
+        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50 dark:border-zinc-800 pb-2">Meesho Advanced Control Center</h4>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          <div class="border border-gray-100 dark:border-zinc-800 bg-gray-50/30 dark:bg-zinc-800/20 p-4 rounded-2xl space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="text-xs">🌓</span>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-800 dark:text-white">System Environment Theme</span>
-            </div>
-            <p class="text-[10px] text-gray-400 font-medium">Switch structural dark and light layout configurations instantly.</p>
-            <div class="grid grid-cols-2 gap-2 pt-1">
-              <button onclick="localStorage.setItem('cstyle_theme','light'); window.location.reload();" class="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-[10px] font-bold p-2 rounded-lg">Light Default</button>
-              <button onclick="localStorage.setItem('cstyle_theme','dark'); window.location.reload();" class="bg-zinc-900 text-white border border-zinc-700 text-[10px] font-bold p-2 rounded-lg">Dark Luxury</button>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="border border-gray-50 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-800/30 p-4 rounded-2xl space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider block text-gray-700 dark:text-white">Device Appearance Theme</span>
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="localStorage.setItem('cstyle_theme','light'); window.location.reload();" class="bg-white dark:bg-zinc-800 text-[10px] font-bold p-2 rounded-lg border border-gray-200 dark:border-zinc-700 shadow-sm">Light Default</button>
+              <button onclick="localStorage.setItem('cstyle_theme','dark'); window.location.reload();" class="bg-zinc-900 text-white text-[10px] font-bold p-2 rounded-lg border border-zinc-800 shadow-sm">Dark Luxury</button>
             </div>
           </div>
 
-          <div onclick="alert('Wallet active: $500.00 infrastructure credits allocated.')" class="border border-gray-100 dark:border-zinc-800 bg-gray-50/30 dark:bg-zinc-800/20 p-4 rounded-2xl space-y-1 cursor-pointer hover:border-black dark:hover:border-white transition flex flex-col justify-between">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2">
-                <span class="text-xs">💰</span>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-gray-800 dark:text-white">C-Style Operational Wallet</span>
-              </div>
-              <p class="text-[10px] text-gray-400 font-medium">Dynamic Line Balance: <strong class="text-emerald-500 font-bold">$500.00</strong></p>
-            </div>
-            <span class="text-[8px] text-gray-300 font-bold uppercase tracking-widest mt-2 block">Tap to sync tokens &rarr;</span>
+          <div class="border border-gray-50 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-800/30 p-4 rounded-2xl space-y-1">
+            <span class="text-[11px] font-bold uppercase tracking-wider block text-gray-700 dark:text-white">C-Style Active Line Wallet</span>
+            <p class="text-[10px] text-gray-400 font-medium">Balance Available: <strong class="text-emerald-500 font-bold">$500.00</strong></p>
           </div>
 
-          <div onclick="alert('Secure node verification required to unlock routing edits.')" class="border border-gray-100 dark:border-zinc-800 bg-gray-50/30 dark:bg-zinc-800/20 p-4 rounded-2xl space-y-1 cursor-pointer hover:border-black dark:hover:border-white transition">
-            <div class="flex items-center gap-2">
-              <span class="text-xs">📍</span>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-800 dark:text-white">Shipping Endpoint Address</span>
-            </div>
-            <p class="text-[10px] text-gray-400 font-medium">Manage geographic maps, secondary sorting yards, and delivery pins for seamless checkout execution.</p>
+          <div class="border border-gray-50 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-800/30 p-4 rounded-2xl space-y-1 opacity-60">
+            <span class="text-[11px] font-bold uppercase tracking-wider block text-gray-700 dark:text-white">Dispatch Logistics Vault</span>
+            <p class="text-[10px] text-gray-400 font-medium">Configure primary target warehouse addresses.</p>
           </div>
 
-          <div class="border border-gray-100 dark:border-zinc-800 bg-gray-50/30 dark:bg-zinc-800/20 p-4 rounded-2xl space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="text-xs">💱</span>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-800 dark:text-white">Localization Currencies</span>
-            </div>
-            <select class="w-full bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 p-2 rounded-lg text-[10px] font-bold focus:outline-none" onchange="alert('Conversion nodes complete.')">
-              <option>USD ($) - Standard Vault</option>
-              <option>INR (₹) - South Asia Relay</option>
-              <option>EUR (€) - Continental Sheet</option>
+          <div class="border border-gray-50 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-800/30 p-4 rounded-2xl space-y-1">
+            <span class="text-[11px] font-bold uppercase tracking-wider block text-gray-700 dark:text-white">Currency Localization</span>
+            <select class="w-full bg-white dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 p-2 rounded-lg text-[10px] font-bold mt-1">
+              <option>USD ($) - Default Matrix</option>
+              <option>INR (₹) - Rupee Cluster</option>
             </select>
           </div>
-
         </div>
       </div>
-
     </section>
 
   </main>
 
   <script src="script.js"></script>
   <script>
-    function compileDashboardDataOnMount() {
-      const email = localStorage.getItem("celosia_user_email");
-      const name = localStorage.getItem("celosia_user_name") || "PREMIUM RETAIL CLIENT";
-      const role = localStorage.getItem("celosia_user_role");
+    function compileProfileDashboardMetrics() {
+      const storedEmail = localStorage.getItem("celosia_user_email");
+      const storedName = localStorage.getItem("celosia_user_name") || "PREMIUM CLIENT";
+      const storedRole = localStorage.getItem("celosia_user_role");
 
-      if (!email) return;
+      if (!storedEmail) return;
 
-      document.getElementById("profile-node-email").textContent = email;
-      document.getElementById("profile-node-fullname").textContent = name;
-      document.getElementById("input-mutation-name").value = name;
-      document.getElementById("avatar-circle-fallback").textContent = name.charAt(0).toUpperCase();
+      document.getElementById("profile-display-email").textContent = storedEmail;
+      document.getElementById("profile-display-name").textContent = storedName;
+      document.getElementById("edit-field-name-string").value = storedName;
+      document.getElementById("user-profile-circle-node").textContent = storedName.charAt(0).toUpperCase();
 
-      if (email.includes("admin") || role === "admin") {
-        document.getElementById("admin-privilege-strip").classList.remove("hidden");
+      if (storedEmail.includes("admin") || storedRole === "admin") {
+        document.getElementById("admin-gatekeeper-strip-row").classList.remove("hidden");
       }
     }
 
-    document.getElementById("meesho-identity-mutation-form").addEventListener("submit", (e) => {
+    document.getElementById("meesho-account-mutation-grid").addEventListener("submit", (e) => {
       e.preventDefault();
-      const updatedValue = document.getElementById("input-mutation-name").value.trim().toUpperCase();
-      if(updatedValue.length < 2) return;
+      const targetString = document.getElementById("edit-field-name-string").value.trim().toUpperCase();
+      if(targetString.length < 2) return;
 
-      localStorage.setItem("celosia_user_name", updatedValue);
-      compileDashboardDataOnMount();
+      localStorage.setItem("celosia_user_name", targetString);
+      compileProfileDashboardMetrics();
       if(window.injectUnifiedNavigationDocks) window.injectUnifiedNavigationDocks();
-      alert("Local account profile configurations rewritten perfectly! 🎉");
+      alert("Local data structures recompiled successfully! 🎉");
     });
 
     window.addEventListener("DOMContentLoaded", () => {
-      compileDashboardDataOnMount();
+      compileProfileDashboardMetrics();
     });
   </script>
 </body>
-        </html>
-              
+            </html>
+  
