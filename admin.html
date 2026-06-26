@@ -3,108 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | CELOSIA</title>
+  <title>Master Repository Console | Owner Panel</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Plus Jakarta Sans', sans-serif; } </style>
 </head>
-<body class="bg-[#F4F4F3] text-[#1A1A1A] antialiased">
+<body class="bg-[#FAFAFA] text-black min-h-screen flex flex-col">
 
-  <div class="min-h-screen flex flex-col md:flex-row">
+  <header class="bg-black text-white px-6 py-4 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-3">
+      <div class="w-7 h-7 bg-white text-black text-xs font-bold rounded-full flex items-center justify-center">Ω</div>
+      <span class="text-xs font-bold uppercase tracking-[0.2em]">C-STYLE MASTER REPOSITORY LAYER</span>
+    </div>
+    <a href="profile.html" class="text-[10px] font-bold uppercase tracking-widest border border-gray-700 px-3 py-1.5 rounded-xl hover:bg-zinc-900 transition">Exit Panel</a>
+  </header>
+
+  <main class="flex-grow w-full max-w-4xl mx-auto p-4 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
     
-    <aside class="w-full md:w-64 bg-black text-white p-6 flex flex-col justify-between">
-      <div class="space-y-6">
-        <div class="text-xl font-bold tracking-widest font-serif">
-          CELOSIA <span class="text-[10px] block font-sans tracking-normal text-gray-400 font-medium">Management Suite</span>
-        </div>
-        <nav class="space-y-3 text-xs uppercase font-semibold tracking-wider text-gray-400">
-          <a href="index.html" class="block hover:text-white transition py-2">← View Live Store</a>
-          <a href="#" class="block text-white py-2 border-l-2 border-white pl-2">📊 Analytics Overview</a>
-          <a href="#" onclick="alert('Inventory management module loading...');" class="block hover:text-white transition py-2">📦 Manage Products</a>
-          <a href="#" onclick="alert('Order database synchronization in progress...');" class="block hover:text-white transition py-2">🧾 Live Orders Logs</a>
-        </nav>
+    <section class="md:col-span-7 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm space-y-6">
+      <div class="space-y-1">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">Push New Inventory Payload</h3>
+        <p class="text-[11px] text-gray-400 font-medium leading-relaxed">Fill the structured metrics parameters below to dynamically broadcast a retail item cell into live cloud memory rows.</p>
       </div>
-      <div class="text-[10px] text-gray-500 pt-6 border-t border-gray-800">
-        Logged in as: Super Admin
-      </div>
-    </aside>
 
-    <main class="flex-grow p-6 md:p-10 space-y-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b pb-5">
+      <form id="master-database-push-form" class="space-y-4 text-xs font-semibold text-gray-500">
         <div>
-          <h1 class="text-2xl font-serif font-bold tracking-wide">Control Core Panel</h1>
-          <p class="text-xs text-gray-400 font-medium mt-0.5">Real-time business intelligence logs for CELOSIA.</p>
+          <label class="block uppercase text-[9px] tracking-widest mb-1 text-gray-400">Product Nomenclature Title</label>
+          <input type="text" id="add-title" required placeholder="e.g. Silk Oversized Blazer" class="w-full bg-gray-50 border border-gray-100 text-black p-3.5 rounded-xl text-xs font-medium focus:outline-none focus:border-black transition-all">
         </div>
-        <button onclick="alert('Database backup initiated successfully!');" class="bg-black text-white text-[10px] uppercase tracking-widest font-bold px-5 py-3 rounded-lg shadow-md hover:bg-gray-800 transition">
-          Backup Store Logs
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block uppercase text-[9px] tracking-widest mb-1 text-gray-400">Price Metric Token (USD)</label>
+            <input type="number" step="0.01" id="add-price" required placeholder="29.90" class="w-full bg-gray-50 border border-gray-100 text-black p-3.5 rounded-xl text-xs font-medium focus:outline-none focus:border-black transition-all">
+          </div>
+          <div>
+            <label class="block uppercase text-[9px] tracking-widest mb-1 text-gray-400">Inventory Category Node</label>
+            <select id="add-category" required class="w-full bg-gray-50 border border-gray-100 text-black p-3.5 rounded-xl text-xs font-bold focus:outline-none focus:border-black transition-all">
+              <option value="Tops">Tops</option>
+              <option value="Bottoms">Bottoms</option>
+              <option value="Dresses">Dresses</option>
+              <option value="Shoes">Shoes</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block uppercase text-[9px] tracking-widest mb-1 text-gray-400">Unsplash Secure CDN Image URL Reference</label>
+          <input type="url" id="add-image" required placeholder="https://images.unsplash.com/..." class="w-full bg-gray-50 border border-gray-100 text-black p-3.5 rounded-xl text-xs font-medium focus:outline-none focus:border-black transition-all">
+        </div>
+        <button type="submit" id="admin-push-btn" class="w-full bg-black text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest hover:opacity-90 transition shadow-sm">
+          Inject Inventory Row 🚀
         </button>
+      </form>
+    </section>
+
+    <section class="md:col-span-5 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm space-y-4">
+      <div class="space-y-0.5">
+        <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400">Live Memory Snapshot</h4>
+        <p class="text-[10px] text-gray-400 font-medium">Review or purge active entries maps instantly.</p>
       </div>
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
-          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Total Sales (MTD)</p>
-          <h3 class="text-xl font-bold mt-1">$14,290.50</h3>
-          <span class="text-[10px] text-green-600 font-bold">▲ +12% vs Last Week</span>
-        </div>
-        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
-          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Active Orders</p>
-          <h3 class="text-xl font-bold mt-1">38 Pending</h3>
-          <span class="text-[10px] text-blue-600 font-bold">ℹ️ Processing via Node</span>
-        </div>
-        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
-          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Catalog Items</p>
-          <h3 class="text-xl font-bold mt-1">4 Active Assets</h3>
-          <span class="text-[10px] text-gray-400 font-medium">Ready to scale inventory</span>
-        </div>
-        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
-          <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Conversion Rate</p>
-          <h3 class="text-xl font-bold mt-1">3.42%</h3>
-          <span class="text-[10px] text-green-600 font-bold">▲ Optimal Health</span>
-        </div>
-      </div>
+      <div id="admin-live-purge-list" class="space-y-3 max-h-[420px] overflow-y-auto pr-1"></div>
+    </section>
 
-      <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-4">
-        <h3 class="text-sm font-bold uppercase tracking-widest font-serif border-b pb-3">Active Catalog Status</h3>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs font-medium text-gray-500">
-            <thead>
-              <tr class="uppercase text-[10px] tracking-wider text-gray-400 border-b">
-                <th class="pb-3">Product Name</th>
-                <th class="pb-3">SKU ID</th>
-                <th class="pb-3">Stock Level</th>
-                <th class="pb-3">Retail Price</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100 font-semibold text-gray-800">
-              <tr>
-                <td class="py-3">Ribbed Knit Top</td>
-                <td>CLS-101</td>
-                <td class="text-green-600">In Stock (42)</td>
-                <td>$29.90</td>
-              </tr>
-              <tr>
-                <td class="py-3">Wide-Leg Jeans</td>
-                <td>CLS-102</td>
-                <td class="text-green-600">In Stock (18)</td>
-                <td>$49.90</td>
-              </tr>
-              <tr>
-                <td class="py-3">Linen Blend Shirt</td>
-                <td>CLS-103</td>
-                <td class="text-orange-500">Low Stock (4)</td>
-                <td>$34.90</td>
-              </tr>
-            </tr>
-            <tbody class="divide-y divide-gray-100 font-semibold text-gray-800">
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </main>
-  </div>
+  </main>
 
   <script src="script.js"></script>
+  <script>
+    // SECURITY HANDSHAKE FOR PROTECTION CLEARANCE GATE
+    function verifyAdminConsoleClearance() {
+      const activeUser = localStorage.getItem("celosia_user_email");
+      const userRole = localStorage.getItem("celosia_user_role");
+
+      if (!activeUser || (!activeUser.includes("admin") && userRole !== "admin")) {
+        alert("Security Violation: Administrative privilege missing on this access signature token.");
+        window.location.href = "profile.html";
+      }
+    }
+
+    async function loadAdminSnapshotList() {
+      const display = document.getElementById("admin-live-purge-list");
+      display.innerHTML = `<span class="text-[10px] text-gray-400 font-medium block text-center py-6 animate-pulse">Syncing lists...</span>`;
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*`, {
+          method: "GET",
+          headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+        });
+        const items = await res.json();
+
+        if(items.length === 0) {
+          display.innerHTML = `<span class="text-[10px] text-gray-400 font-bold block text-center py-6">Database clear.</span>`;
+          return;
+        }
+
+        display.innerHTML = items.map(p => `
+          <div class="border border-gray-50 bg-gray-50/40 p-3 rounded-xl flex items-center justify-between text-xs font-bold">
+            <div class="truncate max-w-[150px]">
+              <span class="block text-gray-900 truncate uppercase text-[11px]">${p.title}</span>
+              <span class="text-[10px] text-gray-400">$${parseFloat(p.price).toFixed(2)}</span>
+            </div>
+            <button onclick="purgeInventoryRow(${p.id})" class="text-[10px] bg-red-50 text-red-500 border border-red-100 px-3 py-1.5 rounded-lg hover:bg-red-100 transition">Purge</button>
+          </div>
+        `).join('');
+
+      } catch (err) {
+        display.innerHTML = `<span class="text-[10px] text-red-500 font-bold block text-center">Connection Lost</span>`;
+      }
+    }
+
+    document.getElementById("master-database-push-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("add-title").value;
+      const price = parseFloat(document.getElementById("add-price").value);
+      const category = document.getElementById("add-category").value;
+      const image = document.getElementById("add-image").value;
+
+      document.getElementById("admin-push-btn").textContent = "Broadcasting Streams...";
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/products`, {
+          method: "POST",
+          headers: { 
+            "apikey": SUPABASE_KEY, 
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({ title, price, category, image })
+        });
+        if(!res.ok) throw new Error("Supabase Write Block Execution Error");
+
+        alert("Inventory Registry Row Embedded Correctly! 🎉");
+        document.getElementById("master-database-push-form").reset();
+        loadAdminSnapshotList();
+      } catch (err) {
+        alert("Push Failure exception: " + err.message);
+      } finally {
+        document.getElementById("admin-push-btn").textContent = "Inject Inventory Row 🚀";
+      }
+    });
+
+    window.purgeInventoryRow = async function(id) {
+      if(!confirm("Execute permanent database deletion trace node?")) return;
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/products?id=eq.${id}`, {
+          method: "DELETE",
+          headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+        });
+        if(!res.ok) throw new Error("Supabase Delete Frame Exception");
+        loadAdminSnapshotList();
+      } catch (err) {
+        alert("Purge Failure: " + err.message);
+      }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      verifyAdminConsoleClearance();
+      loadAdminSnapshotList();
+    });
+  </script>
 </body>
-  </html>
-  
+      </html>
+          
