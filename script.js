@@ -18,7 +18,7 @@ function injectUnifiedNavigationDocks() {
   const cart = JSON.parse(localStorage.getItem("celosia_cart")) || [];
   const totalQty = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
 
-  // 1. DESKTOP HEADER (Clean Layout - Heart, Profile aur extra icons permanently removed)
+  // 1. DESKTOP HEADER
   const desktopHeaderContainer = document.getElementById("cstyle-global-desktop-header");
   if (desktopHeaderContainer) {
     desktopHeaderContainer.innerHTML = `
@@ -71,9 +71,55 @@ function injectUnifiedNavigationDocks() {
       <span class="text-[8px] font-bold tracking-widest uppercase mt-1">Profile</span>
     </a>
   `;
+
+  // 3. SECURE OWNER BUTTON INJECTION (With Anti-Fail Guard)
+  const userRole = localStorage.getItem("celosia_user_role");
+  if ((activeUser && activeUser.includes("admin")) || userRole === "admin") {
+    injectAdminPortalButtonWithRetry();
+  }
 }
 
-// REAL-TIME COUNTER SYNC (Home page bag connection fix)
+// Loop execution guard to ensure button gets attached perfectly
+function injectAdminPortalButtonWithRetry() {
+  if (!window.location.pathname.includes("profile.html")) return;
+
+  let attempts = 0;
+  const maxAttempts = 20; // Try checking for 4 whole seconds
+
+  const checkerInterval = setInterval(() => {
+    attempts++;
+    
+    // Find logout button across common keywords
+    let logoutBtn = document.querySelector("button[onclick*='logout'], button[onclick*='signout']");
+    if (!logoutBtn) {
+      const buttons = document.querySelectorAll("button");
+      buttons.forEach(btn => {
+        const text = btn.textContent.toLowerCase();
+        if (text.includes("log") || text.includes("exit") || text.includes("sign")) {
+          logoutBtn = btn;
+        }
+      });
+    }
+
+    // Inject if found
+    if (logoutBtn) {
+      clearInterval(checkerInterval);
+      if (!document.getElementById("cstyle-quick-admin-trigger")) {
+        const adminBtn = document.createElement("button");
+        adminBtn.id = "cstyle-quick-admin-trigger";
+        adminBtn.className = "w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-3.5 px-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:from-amber-600 hover:to-amber-700 transition mb-3 block text-center";
+        adminBtn.innerHTML = "Access Master Console 👑";
+        adminBtn.onclick = () => { window.location.href = "admin.html"; };
+        logoutBtn.parentNode.insertBefore(adminBtn, logoutBtn);
+      }
+    }
+
+    if (attempts >= maxAttempts) {
+      clearInterval(checkerInterval);
+    }
+  }, 200);
+}
+
 window.injectUnifiedNavigationDocks = injectUnifiedNavigationDocks;
 
 window.toggleGlobalThemeEngine = function() {
@@ -81,7 +127,7 @@ window.toggleGlobalThemeEngine = function() {
   const targetTheme = currentTheme === "light" ? "dark" : "light";
   localStorage.setItem("cstyle_theme", targetTheme);
   applyCachedThemeState();
-  window.location.reload(); // Instantly flips the current interface colors safely
+  window.location.reload();
 };
 
 function applyCachedThemeState() {
@@ -98,3 +144,4 @@ document.addEventListener("DOMContentLoaded", () => {
   applyCachedThemeState();
   injectUnifiedNavigationDocks();
 });
+                                           
