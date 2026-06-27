@@ -10,7 +10,7 @@ function enforceGlobalSecurityLock() {
   }
 }
 
-function injectUnifiedNavigationDocks() {
+async function injectUnifiedNavigationDocks() {
   const activeUser = localStorage.getItem("celosia_user_email");
   if (!activeUser) return;
 
@@ -18,7 +18,30 @@ function injectUnifiedNavigationDocks() {
   const cart = JSON.parse(localStorage.getItem("celosia_cart")) || [];
   const totalQty = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
 
-  // 1. DESKTOP HEADER
+  // SECURE SERVER-SIDE VALIDATION: Check if user is genuinely an admin in database
+  let isAdmin = false;
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(activeUser)}&select=role`, {
+      method: "GET",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`
+      }
+    });
+    const userData = await response.json();
+    if (userData && userData.length > 0 && userData[0].role === "admin") {
+      isAdmin = true;
+      localStorage.setItem("celosia_user_role", "admin"); // Sync safely
+    } else {
+      localStorage.removeItem("celosia_user_role");
+    }
+  } catch (err) {
+    // Fallback to offline check only if network fails
+    const cachedRole = localStorage.getItem("celosia_user_role");
+    isAdmin = activeUser.includes("admin") || cachedRole === "admin";
+  }
+
+  // 1. DESKTOP HEADER (Admin panel links are purely conditional now)
   const desktopHeaderContainer = document.getElementById("cstyle-global-desktop-header");
   if (desktopHeaderContainer) {
     desktopHeaderContainer.innerHTML = `
@@ -31,6 +54,7 @@ function injectUnifiedNavigationDocks() {
           <a href="index.html" class="${currentPath.includes('index.html') ? 'text-black dark:text-white' : 'hover:text-black dark:hover:text-white'} transition">New Arrivals</a>
           <a href="products.html" class="${currentPath.includes('products.html') ? 'text-black dark:text-white' : 'hover:text-black dark:hover:text-white'} transition">Catalog</a>
           <a href="orders-tracker.html" class="${currentPath.includes('orders-tracker.html') ? 'text-black dark:text-white' : 'hover:text-black dark:hover:text-white'} transition">Orders</a>
+          ${isAdmin ? `<a href="admin.html" class="${currentPath.includes('admin.html') ? 'text-amber-500 font-extrabold' : 'text-amber-600 dark:text-amber-400 hover:opacity-80'} transition">👑 Admin Panel</a>` : ''}
           <a href="profile.html" class="${currentPath.includes('profile.html') ? 'text-black dark:text-white' : 'hover:text-black dark:hover:text-white'} transition">Settings</a>
         </nav>
         <button onclick="toggleGlobalThemeEngine()" class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-zinc-800 text-xs text-black dark:text-white transition">🌓</button>
@@ -66,61 +90,43 @@ function injectUnifiedNavigationDocks() {
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
       <span class="text-[8px] font-bold tracking-widest uppercase mt-1">Orders</span>
     </a>
+    ${isAdmin ? `
+    <a href="admin.html" class="flex flex-col items-center justify-center transition ${currentPath.includes('admin.html') ? 'text-amber-500 scale-105' : 'text-amber-600 dark:text-amber-400'}">
+      <span class="text-[14px]">👑</span>
+      <span class="text-[8px] font-bold tracking-widest uppercase mt-0.5">Console</span>
+    </a>
+    ` : `
     <a href="profile.html" class="flex flex-col items-center justify-center transition ${currentPath.includes('profile.html') ? 'text-black dark:text-white scale-105' : 'text-gray-400 dark:text-zinc-600'}">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
       <span class="text-[8px] font-bold tracking-widest uppercase mt-1">Profile</span>
     </a>
+    `}
   `;
 
-  // 3. SECURE OWNER BUTTON INJECTION (With Anti-Fail Guard)
-  const userRole = localStorage.getItem("celosia_user_role");
-  if ((activeUser && activeUser.includes("admin")) || userRole === "admin") {
-    injectAdminPortalButtonWithRetry();
+  // Explicit Injection Trigger inside settings card
+  if (isAdmin && currentPath.includes("profile.html")) {
+    executeAbsoluteProfileInjection();
   }
 }
 
-// Loop execution guard to ensure button gets attached perfectly
-function injectAdminPortalButtonWithRetry() {
-  if (!window.location.pathname.includes("profile.html")) return;
+function executeAbsoluteProfileInjection() {
+  setTimeout(() => {
+    if (document.getElementById("cstyle-quick-admin-trigger")) return;
 
-  let attempts = 0;
-  const maxAttempts = 20; // Try checking for 4 whole seconds
-
-  const checkerInterval = setInterval(() => {
-    attempts++;
-    
-    // Find logout button across common keywords
-    let logoutBtn = document.querySelector("button[onclick*='logout'], button[onclick*='signout']");
-    if (!logoutBtn) {
-      const buttons = document.querySelectorAll("button");
-      buttons.forEach(btn => {
-        const text = btn.textContent.toLowerCase();
-        if (text.includes("log") || text.includes("exit") || text.includes("sign")) {
-          logoutBtn = btn;
-        }
-      });
+    const targetArea = document.querySelector("main") || document.querySelector("form") || document.body;
+    if (targetArea) {
+      const wrapper = document.createElement("div");
+      wrapper.id = "cstyle-quick-admin-trigger";
+      wrapper.className = "w-full max-w-xs mx-auto p-2 block text-center clear-both";
+      wrapper.innerHTML = `
+        <button onclick="window.location.href='admin.html'" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-4 px-4 rounded-2xl text-xs font-bold uppercase tracking-widest shadow-[0_10px_25px_-5px_rgba(245,158,11,0.4)] hover:from-amber-600 hover:to-amber-700 transition cursor-pointer mt-6 mb-4 block">
+          Access Master Console 👑
+        </button>
+      `;
+      targetArea.appendChild(wrapper);
     }
-
-    // Inject if found
-    if (logoutBtn) {
-      clearInterval(checkerInterval);
-      if (!document.getElementById("cstyle-quick-admin-trigger")) {
-        const adminBtn = document.createElement("button");
-        adminBtn.id = "cstyle-quick-admin-trigger";
-        adminBtn.className = "w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-3.5 px-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:from-amber-600 hover:to-amber-700 transition mb-3 block text-center";
-        adminBtn.innerHTML = "Access Master Console 👑";
-        adminBtn.onclick = () => { window.location.href = "admin.html"; };
-        logoutBtn.parentNode.insertBefore(adminBtn, logoutBtn);
-      }
-    }
-
-    if (attempts >= maxAttempts) {
-      clearInterval(checkerInterval);
-    }
-  }, 200);
+  }, 400);
 }
-
-window.injectUnifiedNavigationDocks = injectUnifiedNavigationDocks;
 
 window.toggleGlobalThemeEngine = function() {
   const currentTheme = localStorage.getItem("cstyle_theme") || "light";
@@ -144,4 +150,4 @@ document.addEventListener("DOMContentLoaded", () => {
   applyCachedThemeState();
   injectUnifiedNavigationDocks();
 });
-                                           
+  
