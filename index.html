@@ -8,13 +8,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script> tailwind.config = { darkMode: 'class' } </script>
+  
+  <script>
+    if (localStorage.getItem("cstyle_theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.01em; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-[#FBFBFA] text-[#111111] antialiased min-h-screen flex flex-col pb-20 md:pb-0">
+<body class="bg-[#FBFBFA] dark:bg-zinc-950 text-[#111111] dark:text-white antialiased min-h-screen flex flex-col pb-24 md:pb-0 transition-colors">
 
   <div class="bg-black text-white text-[10px] font-semibold tracking-widest py-2.5 px-4 flex justify-between items-center border-b border-white/10 uppercase">
     <div class="hidden lg:block">Store Locator &bull; Customer Support</div>
@@ -22,57 +32,23 @@
     <div class="hidden lg:block">📍 Global Vault Node</div>
   </div>
 
-  <header class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 px-4 md:px-8 py-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-      
-      <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
-        <div class="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-bold text-sm tracking-tighter">C</div>
-        <span class="text-base font-bold tracking-[0.25em] text-black uppercase">C-STYLE</span>
-      </a>
-
-      <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold tracking-widest text-gray-400 uppercase">
-        <a href="index.html" class="text-black transition">New In</a>
-        <a href="products.html" class="hover:text-black transition">Women</a>
-        <a href="products.html" class="hover:text-black transition">Men</a>
-        <a href="products.html" class="hover:text-black transition">Shoes</a>
-        <a href="products.html" class="hover:text-black transition">Accessories</a>
-        <a href="products.html" class="text-red-500 hover:text-red-600 transition tracking-[0.2em]">Sale</a>
-      </nav>
-
-      <div class="hidden md:flex flex-grow max-w-xs relative">
-        <input type="text" onclick="window.location.href='products.html'" placeholder="Search for items, trends..." class="w-full bg-gray-50 border border-gray-100 rounded-full pl-4 pr-10 py-2 text-xs font-medium focus:outline-none focus:border-black transition-all">
-        <span class="absolute right-3.5 top-2.5 text-xs text-gray-400 pointer-events-none">🔍</span>
-      </div>
-
-      <div class="flex items-center space-x-5 text-gray-800">
-        <a href="profile.html" class="hover:text-black transition text-sm relative" title="User Space Matrix">
-          👤
-        </a>
-        <a href="cart.html" class="hover:text-black transition text-sm relative" title="Wishlist System">
-          🤍<span class="global-wishlist-count absolute -top-1.5 -right-1.5 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold hidden">0</span>
-        </a>
-        <a href="cart.html" class="hover:text-black transition text-sm relative" title="Trolley Summary Ledger">
-          🛒<span class="global-cart-count absolute -top-1.5 -right-1.5 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold hidden">0</span>
-        </a>
-      </div>
-    </div>
-  </header>
+  <header id="cstyle-global-desktop-header" class="bg-white dark:bg-zinc-900 border-b border-gray-100 dark:border-zinc-800 sticky top-0 z-50 px-4 md:px-8 py-4"></header>
 
   <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-12">
 
-    <section class="relative bg-gray-50 border border-gray-100 rounded-[32px] overflow-hidden aspect-[4/5] md:aspect-[21/9] flex items-center p-6 md:p-16">
+    <section class="relative bg-gray-50 dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-[32px] overflow-hidden aspect-[4/5] md:aspect-[21/9] flex items-center p-6 md:p-16 shadow-sm">
       <div class="max-w-md space-y-4 relative z-10">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.05]">WEAR YOUR<br>CONFIDENCE</h1>
-        <p class="text-xs md:text-sm text-gray-500 font-medium leading-relaxed max-w-xs">Handpicked minimal design concepts engineered to optimize your individual style statement seamlessly.</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black dark:text-white leading-[1.05]">WEAR YOUR<br>CONFIDENCE</h1>
+        <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed max-w-xs">Handpicked minimal design concepts engineered to optimize your individual style statement seamlessly.</p>
         <div class="flex items-center gap-3 pt-2">
-          <a href="products.html" class="bg-black text-white text-xs font-bold px-6 py-3.5 rounded-full hover:bg-gray-800 transition shadow-md tracking-wider">Shop New In</a>
-          <a href="products.html" class="bg-white border border-gray-200 text-black text-xs font-bold px-6 py-3.5 rounded-full hover:bg-gray-50 transition tracking-wider">Explore Collections</a>
+          <a href="products.html" class="bg-black dark:bg-white text-white dark:text-black text-xs font-bold px-6 py-3.5 rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition shadow-md tracking-wider">Shop New In</a>
+          <a href="products.html" class="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-black dark:text-white text-xs font-bold px-6 py-3.5 rounded-full hover:bg-gray-50 dark:hover:bg-zinc-700 transition tracking-wider">Explore Collections</a>
         </div>
       </div>
-      <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center hidden md:block border-l border-gray-100" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800');"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center hidden md:block border-l border-gray-100 dark:border-zinc-800" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800');"></div>
     </section>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 py-3 border-y border-gray-100 text-center bg-white rounded-2xl">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 py-3 border-y border-gray-100 dark:border-zinc-900 text-center bg-white dark:bg-zinc-900 rounded-2xl border dark:border-zinc-800 shadow-sm">
       <div class="p-2 space-y-0.5"><span class="text-xs font-bold block">🚚 FREE SHIPPING</span><span class="text-[9px] text-gray-400 font-bold uppercase tracking-wider">On orders over $75</span></div>
       <div class="p-2 space-y-0.5"><span class="text-xs font-bold block">🔄 EASY RETURNS</span><span class="text-[9px] text-gray-400 font-bold uppercase tracking-wider">30-day structural assurance</span></div>
       <div class="p-2 space-y-0.5"><span class="text-xs font-bold block">🔒 SECURE CHECKOUT</span><span class="text-[9px] text-gray-400 font-bold uppercase tracking-wider">100% encrypted pipeline</span></div>
@@ -81,32 +57,32 @@
 
     <section class="space-y-4">
       <div class="flex justify-between items-baseline">
-        <h3 class="text-xs font-bold uppercase tracking-widest text-black">Shop By Category</h3>
-        <a href="products.html" class="text-xs font-bold text-gray-400 hover:text-black transition">View all &rarr;</a>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">Shop By Category</h3>
+        <a href="products.html" class="text-xs font-bold text-gray-400 hover:text-black dark:hover:text-white transition">View all &rarr;</a>
       </div>
       <div class="flex items-center gap-6 overflow-x-auto pb-2 no-scrollbar">
         <div onclick="window.location.href='products.html'" class="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0 group">
-          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200/50"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
-          <span class="text-[11px] font-bold text-gray-500 group-hover:text-black transition">Tops</span>
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 dark:bg-zinc-800 border border-gray-200/50 dark:border-zinc-700"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
+          <span class="text-[11px] font-bold text-gray-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition">Tops</span>
         </div>
         <div onclick="window.location.href='products.html'" class="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0 group">
-          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200/50"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
-          <span class="text-[11px] font-bold text-gray-500 group-hover:text-black transition">Bottoms</span>
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 dark:bg-zinc-800 border border-gray-200/50 dark:border-zinc-700"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
+          <span class="text-[11px] font-bold text-gray-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition">Bottoms</span>
         </div>
         <div onclick="window.location.href='products.html'" class="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0 group">
-          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200/50"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
-          <span class="text-[11px] font-bold text-gray-500 group-hover:text-black transition">Dresses</span>
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 dark:bg-zinc-800 border border-gray-200/50 dark:border-zinc-700"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
+          <span class="text-[11px] font-bold text-gray-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition">Dresses</span>
         </div>
         <div onclick="window.location.href='products.html'" class="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0 group">
-          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200/50"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
-          <span class="text-[11px] font-bold text-gray-500 group-hover:text-black transition">Shoes</span>
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 dark:bg-zinc-800 border border-gray-200/50 dark:border-zinc-700"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
+          <span class="text-[11px] font-bold text-gray-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition">Shoes</span>
         </div>
         <div onclick="window.location.href='products.html'" class="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0 group">
-          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200/50"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
-          <span class="text-[11px] font-bold text-gray-500 group-hover:text-black transition">Accessories</span>
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 dark:bg-zinc-800 border border-gray-200/50 dark:border-zinc-700"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=150" class="w-full h-full object-cover group-hover:scale-105 transition"></div>
+          <span class="text-[11px] font-bold text-gray-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition">Accessories</span>
         </div>
         <div onclick="window.location.href='products.html'" class="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0 group">
-          <div class="w-16 h-16 rounded-full bg-black flex items-center justify-center font-bold text-[10px] text-white tracking-widest uppercase">Sale</div>
+          <div class="w-16 h-16 rounded-full bg-black dark:bg-white flex items-center justify-center font-bold text-[10px] text-white dark:text-black tracking-widest uppercase">Sale</div>
           <span class="text-[11px] font-bold text-red-500">Offers</span>
         </div>
       </div>
@@ -114,8 +90,8 @@
 
     <section class="space-y-4">
       <div class="flex justify-between items-baseline">
-        <h3 class="text-xs font-bold uppercase tracking-widest text-black">New Arrivals</h3>
-        <a href="products.html" class="text-xs font-bold text-gray-400 hover:text-black transition">View all catalog &rarr;</a>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">Curated Catalog Grid</h3>
+        <a href="products.html" class="text-xs font-bold text-gray-400 hover:text-black dark:hover:text-white transition">View all catalog &rarr;</a>
       </div>
 
       <div id="index-products-grid-view" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -126,8 +102,8 @@
   </main>
 
   <div class="fixed bottom-24 md:bottom-6 right-6 z-50 flex flex-col items-end">
-    <div id="ai-chat-window" class="hidden w-80 md:w-96 h-[460px] bg-white border border-gray-100 rounded-[28px] shadow-[0_30px_70px_rgba(0,0,0,0.15)] flex-col overflow-hidden mb-4 transition-all duration-300">
-      <div class="bg-black p-4 text-white flex justify-between items-center">
+    <div id="ai-chat-window" class="hidden w-80 md:w-96 h-[460px] bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-[28px] shadow-[0_30px_70px_rgba(0,0,0,0.15)] flex-col overflow-hidden mb-4 transition-all duration-300">
+      <div class="bg-black dark:bg-zinc-950 p-4 text-white flex justify-between items-center">
         <div class="flex items-center space-x-2.5">
           <div class="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
           <div>
@@ -138,37 +114,21 @@
         <button onclick="toggleAiChat()" class="text-gray-400 hover:text-white text-xs">✕</button>
       </div>
       
-      <div id="ai-chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs bg-[#FBFBFA]">
-        <div class="bg-white border border-gray-100 text-gray-700 p-3 rounded-2xl max-w-[85%] shadow-sm leading-relaxed">
+      <div id="ai-chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs bg-[#FBFBFA] dark:bg-zinc-950">
+        <div class="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 p-3 rounded-2xl max-w-[85%] shadow-sm leading-relaxed">
           Hi! Welcome to C-Style. I can instantly analyze store configurations, layout trending style advice, or assist with shipping coordinates. Ask me anything!
         </div>
       </div>
       
-      <form id="ai-chat-form" class="p-3 bg-white border-t border-gray-100 flex gap-2">
-        <input type="text" id="ai-chat-input" placeholder="Inquire about luxury configurations..." class="flex-grow bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-black font-medium transition-all">
-        <button type="submit" class="bg-black text-white px-4 rounded-xl text-xs font-bold hover:bg-gray-800 transition">&rarr;</button>
+      <form id="ai-chat-form" class="p-3 bg-white dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800 flex gap-2">
+        <input type="text" id="ai-chat-input" placeholder="Inquire about luxury configurations..." class="flex-grow bg-gray-50 dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 text-black dark:text-white rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-black font-medium transition-all">
+        <button type="submit" class="bg-black dark:bg-white text-white dark:text-black px-4 rounded-xl text-xs font-bold hover:bg-gray-800 transition">&rarr;</button>
       </form>
     </div>
 
-    <button onclick="toggleAiChat()" class="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-gray-900 transition duration-300 transform hover:scale-105">
+    <button onclick="toggleAiChat()" class="w-14 h-14 bg-black dark:bg-zinc-800 text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-gray-900 transition duration-300 transform hover:scale-105">
       <span class="text-lg">✦</span>
     </button>
-  </div>
-
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 h-20 px-6 flex items-center justify-between z-50 rounded-t-3xl shadow-2xl">
-    <a href="index.html" class="flex flex-col items-center justify-center text-black">
-      <span class="text-xl">🏠</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Home</span>
-    </a>
-    <a href="products.html" class="flex flex-col items-center justify-center text-gray-400">
-      <span class="text-xl">🔍</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Search</span>
-    </a>
-    <a href="cart.html" class="flex flex-col items-center justify-center text-gray-400 relative">
-      <span class="text-xl">🛒</span><span class="global-cart-count absolute top-0 right-1 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold hidden">0</span>
-      <span class="text-[9px] font-bold tracking-widest uppercase mt-1">Cart</span>
-    </a>
-    <a href="profile.html" class="flex flex-col items-center justify-center text-gray-400">
-      <span class="text-xl">👤</span><span class="text-[9px] font-bold tracking-widest uppercase mt-1">Profile</span>
-    </a>
   </div>
 
   <script src="script.js"></script>
@@ -198,25 +158,25 @@
         }
 
         canvas.innerHTML = localInventoryCache.map((p, index) => `
-          <div class="group flex flex-col bg-white border border-gray-100 p-2.5 rounded-2xl shadow-sm relative">
-            <div class="bg-gray-50 rounded-xl overflow-hidden aspect-[3/4] relative border border-gray-50">
+          <div class="group flex flex-col bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 p-2.5 rounded-2xl shadow-sm relative">
+            <div class="bg-gray-50 dark:bg-zinc-800 rounded-xl overflow-hidden aspect-[3/4] relative border border-gray-50 dark:border-zinc-700">
               <img src="${p.image_url}" class="w-full h-full object-cover transition duration-500 group-hover:scale-102" onerror="this.src='https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=300'">
               
               <div class="absolute bottom-2 left-2 right-2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button onclick="pipeProductToCart(${index})" class="flex-grow bg-black text-white text-[9px] font-bold uppercase tracking-widest py-2 rounded-lg shadow-md hover:bg-gray-900 transition">
+                <button onclick="pipeProductToCart(${index})" class="flex-grow bg-black dark:bg-white text-white dark:text-black text-[9px] font-bold uppercase tracking-widest py-2 rounded-lg shadow-md hover:bg-gray-900 transition">
                   + Add Bag
                 </button>
-                <button onclick="pipeProductToWishlist(${index})" class="bg-white border border-gray-200 text-black w-8 h-8 flex items-center justify-center rounded-lg shadow hover:bg-gray-50 transition text-xs">
+                <button onclick="pipeProductToWishlist(${index})" class="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-black dark:text-white w-8 h-8 flex items-center justify-center rounded-lg shadow hover:bg-gray-50 transition text-xs">
                   🤍
                 </button>
               </div>
             </div>
             
             <div class="mt-2.5 px-0.5 space-y-0.5">
-              <h4 class="text-[11px] font-bold text-gray-800 truncate uppercase tracking-tight">${p.name}</h4>
+              <h4 class="text-[11px] font-bold text-gray-800 dark:text-zinc-200 truncate uppercase tracking-tight">${p.name}</h4>
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-gray-900">$${parseFloat(p.price).toFixed(2)}</span>
-                <span class="text-[9px] text-gray-300 font-bold uppercase tracking-widest">New</span>
+                <span class="text-xs font-bold text-gray-900 dark:text-white">$${parseFloat(p.price).toFixed(2)}</span>
+                <span class="text-[9px] text-gray-300 dark:text-zinc-600 font-bold uppercase tracking-widest">New</span>
               </div>
             </div>
           </div>
@@ -242,10 +202,13 @@
       }
 
       localStorage.setItem("celosia_cart", JSON.stringify(currentCart));
-      if(window.syncGlobalHeaderCounters) window.syncGlobalHeaderCounters();
+      if(window.injectUnifiedNavigationDocks) window.injectUnifiedNavigationDocks();
       
-      // Elite smooth non-blocking custom toast execution
-      window.showPremiumToast("Item Allocated", `Successfully placed "${targetedAsset.name}" inside your active trolley ledger.`, "success");
+      if(window.showPremiumToast) {
+        window.showPremiumToast("Item Allocated", `Successfully placed "${targetedAsset.name}" inside your active trolley ledger.`, "success");
+      } else {
+        alert(`${targetedAsset.name} added to bag!`);
+      }
     };
 
     window.pipeProductToWishlist = function(index) {
@@ -256,18 +219,18 @@
       if(!currentWishlist.some(item => item.id === targetedAsset.id)) {
         currentWishlist.push(targetedAsset);
         localStorage.setItem("celosia_wishlist", JSON.stringify(currentWishlist));
-        if(window.syncGlobalHeaderCounters) window.syncGlobalHeaderCounters();
-        window.showPremiumToast("Wishlist Synced", `Added "${targetedAsset.name}" to your style board curation panel.`, "success");
-      } else {
-        window.showPremiumToast("Asset Registered", "This layout configuration already lives on your curated wishlist.", "info");
+        if(window.showPremiumToast) {
+          window.showPremiumToast("Wishlist Synced", `Added "${targetedAsset.name}" to your style board curation panel.`, "success");
+        } else {
+          alert(`${targetedAsset.name} added to wishlist!`);
+        }
       }
     };
 
     window.addEventListener("DOMContentLoaded", () => {
       streamCloudInventoryToGrid();
-      if(window.syncGlobalHeaderCounters) window.syncGlobalHeaderCounters();
     });
   </script>
 </body>
-    </html>
-  
+            </html>
+                                                                                                      
